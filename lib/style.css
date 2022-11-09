@@ -1,0 +1,136 @@
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+
+@media only screen and (max-width: 1023px) {
+	.container {
+		margin: 0 1em;
+	}
+}
+
+nav {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 1em 0;
+	font-size: large;
+}
+
+nav>*:first-child {
+	margin-right: auto;
+}
+
+nav>*:last-child {
+	flex-basis: 100%;
+	text-align: right;
+}
+
+label {
+	font-weight: bold;
+	margin-bottom: 3px;
+}
+
+main>div {
+	margin: 0.5em 0;
+}
+
+input,
+label {
+	display: block;
+}
+
+input[type='text'] {
+	padding: 0 5px;
+	border-radius: 5px;
+	border: 1px solid #2F4F4FB0;
+	height: 23px;
+	margin-bottom: 0.5em;
+}
+
+input[type='text']:hover {
+	border: 1px solid black;
+}
+
+ul {
+	column-count: 4;
+	column-gap: 20px;
+}
+
+#chancesTable {
+	display: grid;
+	grid-template-columns: 0.1fr 1.5fr 1fr 0.3fr;
+	border: 1px solid black;
+}
+
+#chancesTable>div {
+	border: 1px solid black;
+	padding: 0 2px;
+}
+
+#EXML {
+	font-family: 'Consolas', monospace;
+}
+
+.tooltip {
+	width: 15px;
+	min-width: 15px;
+	height: auto;
+	position: relative;
+	display: inline-block;
+	margin-left: auto;
+	vertical-align: text-bottom;
+}
+
+@media (pointer:coarse) {
+	.tooltip {
+		width: 20px;
+		min-width: 20px;
+	}
+}
+
+.tooltip .tooltiptext {
+	--width: 230px;
+	visibility: hidden;
+	width: var(--width);
+	background-color: #555;
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	padding: 5px 3px;
+	position: absolute;
+	z-index: 1;
+	bottom: 110%;
+	left: 50%;
+	margin-left: calc(var(--width) * -0.5);
+	opacity: 0;
+	transition: opacity 0.3s;
+	font-weight: normal;
+	font-family: Roboto, sans-serif;
+}
+
+.tooltip .tooltiptext::after {
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	margin-left: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext,
+.tooltip:active .tooltiptext {
+	visibility: visible;
+	opacity: 1;
+}
+
+.tooltip>img {
+	position: relative;
+	top: 3px;
+}
+
+.tooltiptext a {
+	color: aqua;
+}
+
+.tooltiptext a:hover {
+	color: rgb(0, 170, 170);
+}

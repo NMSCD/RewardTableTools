@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Reward Search</title>
+	<script src="./lib/logic.js"></script>
+	<link rel="stylesheet" href="./lib/style.css">
+</head>
+
+<body>
+	<div class="container">
+		<nav>
+			<a href=".." title="Other pages">&larr; View other pages</a>
+			<a href="https://app.nmsassistant.com/catalogue" target="_blank" rel="noopener noreferrer"
+				title="Assistant for NMS">Assistant for NMS</a>
+			<div><a href="https://github.com/Lenni009/nms-archive" target="_blank" rel="noopener noreferrer"
+					title="nms-archive">NMS EXML Archive</a></div>
+		</nav>
+		<main>
+			<div>
+				<label for="upload" style="display:inline-block">Upload REWARDTABLE.EXML:</label>
+				<span class="tooltip"><img src="./lib/help.svg"><span class="tooltiptext">
+						Can be found in METADATA/REALITY/TABLES.
+					</span></span>
+				<input id="upload" type="file" accept="text/xml, .EXML, .txt" onchange="readSingleFile(this)">
+			</div>
+			<div>
+				<label for="IdInput">Enter your wanted Product Id:</label>
+				<input id="IdInput" type="text" oninput="updateVar(this)">
+			</div>
+			<div>
+				<label>Results:</label>
+				<ul id="output">
+				</ul>
+			</div>
+			<div id="chances" style="display: none">
+				<div>
+					<label for="rewardInput">Paste reward ID to get chances for rewards:</label>
+					<input id="rewardInput" type="text" oninput="rewardChances(this, 'chancesTable', 'EXML')">
+				</div>
+				<div>
+					<label>Output:</label>
+					<div class="columns is-desktop" id="chanceOutput" style="display:none;">
+						<div class="column is-full-mobile">
+							<label>Chances per item:</label>
+							<div id="chancesTable"></div>
+						</div>
+
+						<div class="column is-full-mobile">
+							<label>EXML snippet:</label>
+							<div id="EXML">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+	</div>
+</body>
+
+</html>
