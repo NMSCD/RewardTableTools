@@ -57,6 +57,7 @@ textarea {
 	border: 1px solid #2F4F4FB0;
 	height: 23px;
 	width: 50%;
+	min-width: 200px;
 }
 
 textarea {
@@ -193,8 +194,6 @@ dialog p:not(:first-child) {
 	margin-bottom: 2em;
 }
 
-.helperButtons {
-	display: flex;
-	justify-content: space-between;
-	width: 18%;
+#helperButtons button {
+	margin-right: 1em;
 }

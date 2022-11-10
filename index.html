@@ -18,7 +18,7 @@
 			<div><a href="https://github.com/Lenni009/nms-archive" target="_blank" rel="noopener noreferrer"
 					title="nms-archive">NMS EXML Archive</a></div>
 		</nav>
-		<div class="helperButtons">
+		<div id="helperButtons">
 			<button id="explainBtn" class="button" onclick="document.getElementById('explanation').showModal()">How to
 				use</button>
 			<button class="button is-warning" id="reset" onclick="reset()">Reset data</button>
@@ -77,7 +77,7 @@
 					</div>
 					<div class="column is-full-mobile">
 						<label for="EXMLInput">Paste EXML here:</label>
-						<textarea id="EXMLInput" oninput="searchSnippet(this, 'chancesTable', 'upload')"></textarea>
+						<textarea id="EXMLInput" oninput="searchSnippet(this, 'chancesTable')"></textarea>
 					</div>
 				</form>
 			</section>
