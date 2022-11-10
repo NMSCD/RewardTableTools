@@ -155,7 +155,7 @@ textarea:hover {
 }
 
 dialog {
-	margin-top: 5em !important;
+	margin-top: 5vh !important;
 	border-radius: 7px;
 	box-shadow: 0 .5em 1em -.125em rgba(10, 10, 10, .1), 0 0 0 1px rgba(10, 10, 10, .02);
 	border: 1px solid lightgrey;
