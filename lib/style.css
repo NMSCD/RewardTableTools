@@ -40,11 +40,6 @@ input {
 	margin-bottom: 0.7em;
 }
 
-main form {
-	display: flex;
-	justify-content: space-between;
-}
-
 hr {
 	background-color: lightgrey;
 	border-radius: 5px;
@@ -57,11 +52,12 @@ textarea {
 	border: 1px solid #2F4F4FB0;
 	height: 23px;
 	width: 50%;
+	min-width: 200px;
 }
 
 textarea {
 	width: 100%;
-	min-height: 80%;
+	min-height: 9em;
 	resize: vertical;
 }
 
@@ -71,7 +67,7 @@ textarea:hover {
 }
 
 #output ul {
-	column-count: 4;
+	column-width: max(15vw, 10em);
 	column-gap: 20px;
 	list-style: inside;
 }
@@ -158,10 +154,6 @@ textarea:hover {
 	color: rgb(0, 170, 170);
 }
 
-#explainBtn {
-	margin-bottom: 1em;
-}
-
 dialog {
 	margin-top: 5em !important;
 	border-radius: 7px;
@@ -193,8 +185,19 @@ dialog p:not(:first-child) {
 	margin-bottom: 2em;
 }
 
-.helperButtons {
-	display: flex;
-	justify-content: space-between;
-	width: 18%;
+#helperButtons {
+	margin-bottom: 1em;
+}
+
+#helperButtons button {
+	margin-right: 1em;
+}
+
+h1 {
+	text-align: center;
+}
+
+h2 {
+	padding-bottom: 5px;
+	border-bottom: 1px solid lightgrey;
 }

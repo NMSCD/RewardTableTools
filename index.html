@@ -18,7 +18,8 @@
 			<div><a href="https://github.com/Lenni009/nms-archive" target="_blank" rel="noopener noreferrer"
 					title="nms-archive">NMS EXML Archive</a></div>
 		</nav>
-		<div class="helperButtons">
+		<h1 class="title is-3">RewardTable Tools</h1>
+		<div id="helperButtons">
 			<button id="explainBtn" class="button" onclick="document.getElementById('explanation').showModal()">How to
 				use</button>
 			<button class="button is-warning" id="reset" onclick="reset()">Reset data</button>
@@ -55,6 +56,7 @@
 		</dialog>
 		<main>
 			<section id="input">
+				<h2 class="title is-4">Input</h2>
 				<form class="columns is-desktop">
 					<div class="column is-full-mobile">
 						<div>
@@ -77,15 +79,18 @@
 					</div>
 					<div class="column is-full-mobile">
 						<label for="EXMLInput">Paste EXML here:</label>
-						<textarea id="EXMLInput" oninput="searchSnippet(this, 'chancesTable', 'upload')"></textarea>
+						<textarea id="EXMLInput" oninput="searchSnippet(this, 'chancesTable')"></textarea>
 					</div>
 				</form>
 			</section>
 			<hr>
 			<section id="output">
-				<div>
-					<label>Product ID rewarded from:</label>
-					<ul id="rewardList"></ul>
+				<h2 class="title is-4">Output</h2>
+				<div class="columns is-desktop">
+					<div class="column is-full">
+						<label>Product ID rewarded from:</label>
+						<ul id="rewardList"></ul>
+					</div>
 				</div>
 				<div class="columns is-desktop">
 					<div class="column is-full-mobile">
