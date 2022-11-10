@@ -31,26 +31,49 @@ main>div {
 	margin: 0.5em 0;
 }
 
-input,
 label {
-	display: block;
+	display: inline-block;
 }
 
-input[type='text'] {
+input {
+	display: block;
+	margin-bottom: 0.7em;
+}
+
+main form {
+	display: flex;
+	justify-content: space-between;
+}
+
+hr {
+	background-color: lightgrey;
+	border-radius: 5px;
+}
+
+input[type='text'],
+textarea {
 	padding: 0 5px;
 	border-radius: 5px;
 	border: 1px solid #2F4F4FB0;
 	height: 23px;
-	margin-bottom: 0.5em;
+	width: 50%;
 }
 
-input[type='text']:hover {
+textarea {
+	width: 100%;
+	min-height: 80%;
+	resize: vertical;
+}
+
+input[type='text']:hover,
+textarea:hover {
 	border: 1px solid black;
 }
 
-ul {
+#output ul {
 	column-count: 4;
 	column-gap: 20px;
+	list-style: inside;
 }
 
 #chancesTable {
@@ -133,4 +156,45 @@ ul {
 
 .tooltiptext a:hover {
 	color: rgb(0, 170, 170);
+}
+
+#explainBtn {
+	margin-bottom: 1em;
+}
+
+dialog {
+	margin-top: 5em !important;
+	border-radius: 7px;
+	box-shadow: 0 .5em 1em -.125em rgba(10, 10, 10, .1), 0 0 0 1px rgba(10, 10, 10, .02);
+	border: 1px solid lightgrey;
+}
+
+dialog form {
+	display: flex;
+	justify-content: space-around;
+}
+
+dialog ul {
+	list-style: inside;
+	margin: 0.2em 0;
+}
+
+dialog p:not(:first-child) {
+	margin-bottom: 1em;
+}
+
+#output div:has(>#rewardList:empty),
+#output div:has(>#chancesTable:empty),
+#output div:has(>#EXML:empty) {
+	display: none;
+}
+
+#output>div:first-child {
+	margin-bottom: 2em;
+}
+
+.helperButtons {
+	display: flex;
+	justify-content: space-between;
+	width: 18%;
 }
