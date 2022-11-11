@@ -1,5 +1,9 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
 
+* {
+	font-family: sans-serif;
+}
+
 @media only screen and (max-width: 1023px) {
 	.container {
 		margin: 0 1em;
@@ -67,9 +71,10 @@ textarea:hover {
 }
 
 #output ul {
-	column-width: max(15vw, 10em);
-	column-gap: 20px;
 	list-style: inside;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	gap: 0 1em;
 }
 
 #chancesTable {
@@ -81,6 +86,29 @@ textarea:hover {
 #chancesTable>div {
 	border: 1px solid black;
 	padding: 0 2px;
+}
+
+#chancesTable>.rarity {
+	padding-left: 1em;
+	grid-column: 1 / span 4;
+	font-weight: bold;
+}
+
+#chancesTable>.size {
+	padding-left: 3em;
+}
+
+#chancesTable>[class] {
+	grid-column: 1 / span 4;
+	font-weight: bold;
+}
+
+#chancesTable>[class]:after {
+	content: ':';
+}
+
+.rarity ~ .rarity:not(.rarity + .rarity) {
+	display: none;
 }
 
 #EXML {
