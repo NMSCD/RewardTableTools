@@ -88,6 +88,27 @@ textarea:hover {
 	padding: 0 2px;
 }
 
+#chancesTable>.rarity {
+	padding-left: 1em;
+	grid-column: 1 / span 4;
+	font-weight: bold;
+}
+
+#chancesTable>.size {
+	padding-left: 3em;
+}
+
+#chancesTable>[class] {
+	grid-column: 1 / span 4;
+	font-weight: bold;
+}
+
+#chancesTable>[class]:after {
+	content: ':';
+}
+
+.rarity ~ .rarity:not(+ .rarity)
+
 #EXML {
 	font-family: 'Consolas', monospace;
 }
