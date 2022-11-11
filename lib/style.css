@@ -107,7 +107,9 @@ textarea:hover {
 	content: ':';
 }
 
-.rarity ~ .rarity:not(+ .rarity)
+.rarity ~ .rarity:not(.rarity + .rarity) {
+	display: none;
+}
 
 #EXML {
 	font-family: 'Consolas', monospace;
