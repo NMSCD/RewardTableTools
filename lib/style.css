@@ -108,7 +108,7 @@ textarea:hover {
 	content: ':';
 }
 
-.rarity ~ .rarity:not(.rarity + .rarity) {
+.rarity~.rarity:not(.rarity + .rarity) {
 	display: none;
 }
 
