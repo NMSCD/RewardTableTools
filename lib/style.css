@@ -83,7 +83,7 @@ textarea:hover {
 	border: 1px solid black;
 }
 
-#chancesTable>div {
+#chancesTable>* {
 	border: 1px solid black;
 	padding: 0 2px;
 	white-space: nowrap;
