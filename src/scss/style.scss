@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
 * {
 	font-family: sans-serif;
 }
@@ -8,45 +10,13 @@
 	}
 }
 
-label {
-	font-weight: bold;
-	margin-bottom: 3px;
-	display: inline-block;
-}
-
 main>div {
 	margin: 0.5em 0;
-}
-
-input {
-	display: block;
-	margin-bottom: 0.7em;
 }
 
 hr {
 	background-color: lightgrey;
 	border-radius: 5px;
-}
-
-input[type='text'],
-textarea {
-	padding: 0 5px;
-	border-radius: 5px;
-	border: 1px solid #2F4F4FB0;
-	height: 23px;
-	width: 50%;
-	min-width: 200px;
-}
-
-textarea {
-	width: 100%;
-	min-height: 9em;
-	resize: vertical;
-}
-
-input[type='text']:hover,
-textarea:hover {
-	border: 1px solid black;
 }
 
 #output ul {
@@ -95,71 +65,12 @@ textarea:hover {
 	font-family: 'Consolas', monospace;
 }
 
-.tooltip {
-	width: 15px;
-	min-width: 15px;
-	height: auto;
-	position: relative;
-	display: inline-block;
-	margin-left: auto;
-	vertical-align: text-bottom;
-}
 
 @media (pointer:coarse) {
 	.tooltip {
 		width: 20px;
 		min-width: 20px;
 	}
-}
-
-.tooltip .tooltiptext {
-	--width: 230px;
-	visibility: hidden;
-	width: var(--width);
-	background-color: #555;
-	color: #fff;
-	text-align: center;
-	border-radius: 6px;
-	padding: 5px 3px;
-	position: absolute;
-	z-index: 1;
-	bottom: 110%;
-	left: 50%;
-	margin-left: calc(var(--width) * -0.5);
-	opacity: 0;
-	transition: opacity 0.3s;
-	font-weight: normal;
-	font-family: Roboto, sans-serif;
-}
-
-.tooltip .tooltiptext::after {
-	content: "";
-	position: absolute;
-	top: 100%;
-	left: 50%;
-	margin-left: -5px;
-	border-width: 5px;
-	border-style: solid;
-	border-color: #555 transparent transparent transparent;
-}
-
-.tooltip:hover .tooltiptext,
-.tooltip:active .tooltiptext {
-	visibility: visible;
-	opacity: 1;
-}
-
-.tooltip>img {
-	position: relative;
-	top: 3px;
-}
-
-.tooltiptext a {
-	color: aqua;
-}
-
-.tooltiptext a:hover {
-	color: rgb(0, 170, 170);
 }
 
 #output div:has(>#rewardList:empty),
@@ -170,9 +81,4 @@ textarea:hover {
 
 #output>div:first-child {
 	margin-bottom: 2em;
-}
-
-h2 {
-	padding-bottom: 5px;
-	border-bottom: 1px solid lightgrey;
 }
