@@ -1,39 +1,21 @@
-const outputs = {
-	rewardList: getOutput('rewardList'),
-	chancesInputType: getOutput('chancesInputType'),
-	chancesTable: getOutput('chancesTable'),
-	EXML: getOutput('EXML'),
-}
+function readFile(element: HTMLInputElement) {
+	if (!element?.files) return;
 
-let file, ID, fileXmlDoc, snippetXmlDoc;		// make these variables available to the entire file
-
-function getOutput(outputId) {
-	const output = document.getElementById(outputId);
-	return output;
-}
-
-function updateVar(element) {
-	ID = element.value;
-	searchReward(fileXmlDoc)
-}
-
-function readSingleFile(e) {
-	file = e.files.item(0);
-
+	const file = element.files[0];
 	if (!file) return;
 
 	const reader = new FileReader();
-	reader.onload = function (e) {
-		const contents = e.target.result;
-		if (!contents) return;
-		fileXmlDoc = processEXML(contents);
-		searchReward(fileXmlDoc);
-		if (document.getElementById("rewardInput").value) searchRewardSection(document.getElementById("rewardInput"), 'chancesTable', 'EXML');
-	};
 	reader.readAsText(file);
+	reader.onload = (e) => {
+		const contents = e.target?.result;
+		if (typeof contents !== 'string') return;
+		const fileXmlDoc = processEXML(contents);
+		searchReward(fileXmlDoc);
+		if ((document.getElementById("rewardInput") as HTMLInputElement | null)?.value) searchRewardSection(document.getElementById("rewardInput"), 'chancesTable', 'EXML');
+	}
 }
 
-function processEXML(contents) {
+export function processEXML(contents: string) {
 	const parser = new DOMParser();
 	return parser.parseFromString(contents, "text/xml");
 }
@@ -49,27 +31,30 @@ function searchRewardSection(inputElement, outputId, EXMLOutputId) {
 	SerialiseXML(reward, EXMLOutputId);
 }
 
-function searchReward(xmlDoc) {
-	if (!(file && ID)) return;
-
-	const elements = Array.from(xmlDoc.querySelectorAll(`*:not([name="InventoryClass"])[value="${ID}" i]`));
+export function searchReward(xmlDoc: Document, ID: string) {
+	const elements: Element[] = Array.from(xmlDoc.querySelectorAll(`*:not([name="InventoryClass"])[value="${ID}" i]`));
 
 	if (!elements.length) return;
 
-	const results = new Set();		// can't have duplicate values
+	const results = new Set<Element>();		// can't have duplicate values
 
 	for (const element of elements) {
 		const reward = element.closest('[value="GcGenericRewardTableEntry.xml"], [value="GcRewardTableEntry.xml"]')?.querySelector('[name="Id"]');
-		if (!reward) return;
-		results.add(reward);
+		if (reward) results.add(reward);
 	}
 
-	document.getElementById("rewardList").innerHTML = '';
+	const resultArray: { [key: string]: string }[] = [];
 
 	for (const reward of results) {
-		const result = `<li>${reward.getAttribute("value")}</li>`;
-		document.getElementById("rewardList").insertAdjacentHTML("beforeend", result);
+		const result = reward.getAttribute('value');
+		if (!result) continue;
+		console.log(result)
+		const returnObj = {
+			value: result
+		}
+		resultArray.push(returnObj);
 	}
+	return resultArray;
 }
 
 function rewardChances(EXMLSection, outputId, inputType, xmlDoc) {

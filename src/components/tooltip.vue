@@ -57,6 +57,12 @@
 	.help-icon {
 		font-size: 1rem;
 		cursor: default;
+
+		@media (pointer:coarse) {
+			& {
+				font-size: 1.5rem;
+			}
+		}
 	}
 }
 </style>

@@ -1,27 +1,21 @@
 import { defineStore } from 'pinia'
 
-interface State {
-	file: File | undefined;
+interface RewardState {
 	id: string | undefined;
-	fileXmlDoc: Document | undefined;
-	snippetXmlDoc: Document | undefined;
 	productSearchTerm: string;
 	rewardSearchTerm: string;
 	exmlSnippet: string;
+	hasResult: boolean;
 }
 
-
 export const useRewardStore = defineStore('reward', {
-	state: (): State => {
+	state: (): RewardState => {
 		return {
-			file: undefined,
 			id: undefined,
-			fileXmlDoc: undefined,
-			snippetXmlDoc: undefined,
 			productSearchTerm: '',
 			rewardSearchTerm: '',
 			exmlSnippet: '',
-
+			hasResult: false,
 
 		}
 	},
@@ -32,8 +26,13 @@ export const useRewardStore = defineStore('reward', {
 	},
 
 	actions: {
+		updateProductId(newId: string) {
+			console.log(newId);
+			this.productSearchTerm = newId;
+		},
 
+		setActive() {
+			this.hasResult = true;
+		}
 	}
-
-
 })
