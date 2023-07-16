@@ -2,7 +2,7 @@ import { processEXML } from 'src/logic/logic';
 import { defineStore } from 'pinia'
 
 interface DocumentState {
-	fileXmlDoc: Document | undefined;
+	fileXmlDoc: XMLDocument | undefined;
 }
 
 export const useDocumentStore = defineStore('document', {
@@ -24,7 +24,6 @@ export const useDocumentStore = defineStore('document', {
 			reader.onload = (e) => {
 				const contents = e.target?.result;
 				this.fileXmlDoc = typeof contents === 'string' ? processEXML(contents) : undefined;
-				console.log("loaded stuff")
 			}
 		},
 	}

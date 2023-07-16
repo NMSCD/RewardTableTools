@@ -27,8 +27,11 @@ export const useRewardStore = defineStore('reward', {
 
 	actions: {
 		updateProductId(newId: string) {
-			console.log(newId);
 			this.productSearchTerm = newId;
+		},
+
+		updateRewardId(newId: string) {
+			this.rewardSearchTerm = newId;
 		},
 
 		setActive() {

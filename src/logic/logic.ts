@@ -1,37 +1,16 @@
-function readFile(element: HTMLInputElement) {
-	if (!element?.files) return;
-
-	const file = element.files[0];
-	if (!file) return;
-
-	const reader = new FileReader();
-	reader.readAsText(file);
-	reader.onload = (e) => {
-		const contents = e.target?.result;
-		if (typeof contents !== 'string') return;
-		const fileXmlDoc = processEXML(contents);
-		searchReward(fileXmlDoc);
-		if ((document.getElementById("rewardInput") as HTMLInputElement | null)?.value) searchRewardSection(document.getElementById("rewardInput"), 'chancesTable', 'EXML');
-	}
-}
-
 export function processEXML(contents: string) {
 	const parser = new DOMParser();
 	return parser.parseFromString(contents, "text/xml");
 }
 
 // entry point for reward ID search
-function searchRewardSection(inputElement, outputId, EXMLOutputId) {
-	const xmlDoc = fileXmlDoc
+export function searchRewardSection(xmlDoc: XMLDocument, input: string) {
 	if (!xmlDoc) return;
-	const input = inputElement.value;
 	const reward = xmlDoc.querySelector(`[value="GcGenericRewardTableEntry.xml"] > [name="Id"][value=${input} i], [value="GcRewardTableEntry.xml"] > [name="Id"][value=${input} i]`)?.parentNode;
-	if (!reward) return;
-	rewardChances(reward, outputId, 'Reward ID chances', xmlDoc);
-	SerialiseXML(reward, EXMLOutputId);
+	if (reward) return reward;
 }
 
-export function searchReward(xmlDoc: Document, ID: string) {
+export function searchReward(xmlDoc: XMLDocument, ID: string) {
 	const elements: Element[] = Array.from(xmlDoc.querySelectorAll(`*:not([name="InventoryClass"])[value="${ID}" i]`));
 
 	if (!elements.length) return;
@@ -97,11 +76,6 @@ function rewardChances(EXMLSection, outputId, inputType, xmlDoc) {
 	document.getElementById("chancesInputType").innerText = inputType;
 }
 
-function SerialiseXML(EXMLSection, EXMLOutputId) {
-	const serializer = new XMLSerializer();
-	const xmlStr = serializer.serializeToString(EXMLSection);
-	document.getElementById(EXMLOutputId).innerText = xmlStr;
-}
 
 function searchSnippet(input, outputId) {
 	const EXML = input.value;
@@ -123,7 +97,7 @@ function reset() {
 }
 
 function buildTable(data) {
-	const outputs = new Array;
+	const outputs: string[] = [];
 	for (let i = 0; i < data.IDs.length; i++) {
 		const itemId = data.IDs[i];
 		const chance = data.chances[i];
@@ -141,7 +115,7 @@ function buildTable(data) {
 	return table;
 }
 
-function getRewards(EXMLSection) {
+function getRewards(EXMLSection: XMLDocument) {
 	const entries = Array.from(EXMLSection.querySelectorAll('[value="GcRewardTableItem.xml"]'));
 
 	const IDs = [];

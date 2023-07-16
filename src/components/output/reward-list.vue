@@ -4,6 +4,7 @@ import { useDocumentStore } from 'src/stores/document';
 import { useRewardStore } from 'src/stores/reward';
 import { computed } from 'vue';
 import { searchReward } from 'src/logic/logic';
+import TextLabel from 'src/components/text-label.vue';
 
 const documentStore = useDocumentStore();
 const rewardStore = useRewardStore();
@@ -20,7 +21,7 @@ const results = computed(() => {
 
 <template>
 	<div>
-		<label>Product ID rewarded from:</label>
+		<text-label>Product ID rewarded from:</text-label>
 		<ul id="rewardList">
 			<li v-for="result in results">
 				{{ result.value }}

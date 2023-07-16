@@ -54,11 +54,6 @@ body {
 	display: none;
 }
 
-#EXML {
-	font-family: 'Consolas', monospace;
-}
-
-
 #output div:has(>#rewardList:empty),
 #output div:has(>#chancesTable:empty),
 #output div:has(>#EXML:empty) {
