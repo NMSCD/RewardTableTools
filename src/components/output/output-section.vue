@@ -2,12 +2,6 @@
 import ExmlSnippet from './exml-snippet.vue';
 import ChancesTable from './chances-table.vue';
 import RewardList from './reward-list.vue';
-import { useRewardStore } from 'src/stores/reward';
-import { storeToRefs } from 'pinia';
-
-const store = useRewardStore();
-const { hasResult } = storeToRefs(store);
-
 </script>
 
 <template>

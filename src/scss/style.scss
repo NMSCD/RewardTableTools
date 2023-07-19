@@ -41,22 +41,25 @@ body {
 	padding-left: 3em;
 }
 
-#chancesTable>[class] {
-	grid-column: 1 / span 4;
-	font-weight: bold;
-}
+#chancesTable {
 
-#chancesTable>[class]:after {
-	content: ':';
+	&>.mark {
+		background-color: yellow;
+		color: black;
+	}
+
+	&>.rarity,
+	&>.size {
+		grid-column: 1 / span 4;
+		font-weight: bold;
+
+		&::after {
+			content: ':';
+		}
+	}
 }
 
 .rarity~.rarity:not(.rarity + .rarity) {
-	display: none;
-}
-
-#output div:has(>#rewardList:empty),
-#output div:has(>#chancesTable:empty),
-#output div:has(>#EXML:empty) {
 	display: none;
 }
 

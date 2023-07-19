@@ -3,7 +3,7 @@ import { storeToRefs } from 'pinia';
 import { useDocumentStore } from 'src/stores/document';
 import { useRewardStore } from 'src/stores/reward';
 import { computed } from 'vue';
-import { searchReward } from 'src/logic/logic';
+import { searchReward } from 'src/logic/rewardList';
 import TextLabel from 'src/components/text-label.vue';
 
 const documentStore = useDocumentStore();
@@ -14,13 +14,12 @@ const { productSearchTerm } = storeToRefs(rewardStore);
 const results = computed(() => {
 	if (!fileXmlDoc.value || !productSearchTerm.value) return [];
 	const results = searchReward(fileXmlDoc.value, productSearchTerm.value);
-	if(results?.length) rewardStore.setActive();
 	return results;
 })
 </script>
 
 <template>
-	<div>
+	<div v-if="results?.length">
 		<text-label>Product ID rewarded from:</text-label>
 		<ul id="rewardList">
 			<li v-for="result in results">

@@ -5,7 +5,7 @@ interface RewardState {
 	productSearchTerm: string;
 	rewardSearchTerm: string;
 	exmlSnippet: string;
-	hasResult: boolean;
+	recentSource: string;
 }
 
 export const useRewardStore = defineStore('reward', {
@@ -15,8 +15,7 @@ export const useRewardStore = defineStore('reward', {
 			productSearchTerm: '',
 			rewardSearchTerm: '',
 			exmlSnippet: '',
-			hasResult: false,
-
+			recentSource: '',
 		}
 	},
 
@@ -26,16 +25,12 @@ export const useRewardStore = defineStore('reward', {
 	},
 
 	actions: {
-		updateProductId(newId: string) {
-			this.productSearchTerm = newId;
+		setExml() {
+			this.recentSource = 'exml'
 		},
 
-		updateRewardId(newId: string) {
-			this.rewardSearchTerm = newId;
-		},
-
-		setActive() {
-			this.hasResult = true;
+		setFile() {
+			this.recentSource = 'file';
 		}
 	}
 })
