@@ -145,16 +145,3 @@ function getRewards(EXMLSection: Element | XMLDocument) {
 function getValue(entry: Element, selector: string) {
 	return entry?.querySelector(selector)?.getAttribute("value");
 }
-
-
-// function checkDataIntegrity(data, outputId) {
-// 	if (data.IDs.length === data.chances.length && data.IDs.length === data.rewards.length) {
-// 		return true;
-// 	} else {
-// 		console.log("ERROR");
-// 		document.getElementById(outputId).style.display = 'block';
-// 		const button = `<button class="button" onclick="this.parentElement.style.display = ''; this.parentElement.innerHTML = '';">Restore Functionality</button>`
-// 		document.getElementById(outputId).innerHTML = "[ERROR: Array length doesn't match] Something went wrong. Please send the Reward Id to Lenni#4423 on Discord. Click this button to regain page functionality." + button;
-// 		return false;
-// 	}
-// }
