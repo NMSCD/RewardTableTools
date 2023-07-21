@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+html,
+body {
+	font-family: sans-serif;
+}
+
+
+@media only screen and (max-width: 1023px) {
+	.container {
+		margin: 0 1em;
+	}
+}
+
+#output ul {
+	list-style: inside;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	gap: 0 1em;
+}
+
+#chancesTable {
+	display: grid;
+	grid-template-columns: 0.1fr 1.5fr 1fr 0.3fr;
+	border: 1px solid black;
+}
+
+#chancesTable>* {
+	border: 1px solid black;
+	padding: 0 2px;
+	white-space: nowrap;
+}
+
+#chancesTable>.rarity {
+	padding-left: 1em;
+	grid-column: 1 / span 4;
+	font-weight: bold;
+}
+
+#chancesTable>.size {
+	padding-left: 3em;
+}
+
+#chancesTable {
+
+	&>.mark {
+		background-color: yellow;
+		color: black;
+	}
+
+	&>.rarity,
+	&>.size {
+		grid-column: 1 / span 4;
+		font-weight: bold;
+
+		&::after {
+			content: ':';
+		}
+	}
+}
+
+.rarity~.rarity:not(.rarity + .rarity) {
+	display: none;
+}
+
+#output>div:first-child {
+	margin-bottom: 2em;
+}
