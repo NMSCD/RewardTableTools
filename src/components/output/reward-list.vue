@@ -19,12 +19,26 @@ const results = computed(() => {
 </script>
 
 <template>
-	<div v-if="results?.length">
+	<div v-if="productSearchTerm">
 		<text-label>Product ID rewarded from:</text-label>
-		<ul id="rewardList">
-			<li v-for="result in results">
-				{{ result.value }}
-			</li>
-		</ul>
+		<div v-if="results?.length">
+			<ul class="reward-list">
+				<li v-for="result in results">
+					{{ result.value }}
+				</li>
+			</ul>
+		</div>
+		<div v-else>
+			No reward found!
+		</div>
 	</div>
 </template>
+
+<style scoped lang="scss">
+.reward-list {
+	list-style: inside;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	gap: 0 1em;
+}
+</style>
