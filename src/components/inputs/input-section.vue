@@ -4,9 +4,21 @@ import TextareaInput from './textarea-input.vue';
 import TextInput from './text-input.vue';
 import { useRewardStore } from 'src/stores/reward';
 import { storeToRefs } from 'pinia';
+import { processEXML, rewardChances } from 'src/logic/logic';
+import { watch } from 'vue';
 
 const rewardStore = useRewardStore();
 const { productSearchTerm, rewardSearchTerm, exmlSnippet } = storeToRefs(rewardStore);
+
+watch(exmlSnippet, (newValue) => {
+	if (newValue && productSearchTerm.value) searchSnippet(newValue, productSearchTerm.value);
+})
+
+function searchSnippet(exml: string, productSearchTerm: string) {
+	if (!exml) return;
+	const snippetXmlDoc = processEXML(exml);		// populate xmlDoc variable
+	rewardChances(snippetXmlDoc, productSearchTerm);
+}
 
 </script>
 

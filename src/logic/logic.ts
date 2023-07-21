@@ -3,7 +3,8 @@ import { buildTable, constructData } from './tableBuilder';
 
 export function processEXML(contents: string) {
 	const parser = new DOMParser();
-	return parser.parseFromString(contents, "text/xml");
+	const returnValue = parser.parseFromString(contents, "text/xml");
+	return returnValue;
 }
 
 /**
@@ -144,26 +145,6 @@ function getRewards(EXMLSection: Element | XMLDocument) {
 function getValue(entry: Element, selector: string) {
 	return entry?.querySelector(selector)?.getAttribute("value");
 }
-
-// function searchSnippet(input, outputId) {
-// 	const EXML = input.value;
-// 	if (!EXML) return;
-// 	snippetXmlDoc = processEXML(EXML);		// populate xmlDoc variable
-// 	rewardChances(snippetXmlDoc, outputId, 'Chances from EXML snippet', snippetXmlDoc);
-// }
-
-// function reset() {
-// 	const inputs: NodeListOf<HTMLInputElement | HTMLTextAreaElement> = document.querySelectorAll('input[type="text"], textarea');
-// 	for (const input of inputs) {
-// 		input.value = '';
-// 	}
-
-// 	const outputs = document.querySelectorAll('#output [id]')
-// 	for (const output of outputs) {
-// 		output.innerHTML = '';
-// 	}
-// }
-
 
 
 // function checkDataIntegrity(data, outputId) {

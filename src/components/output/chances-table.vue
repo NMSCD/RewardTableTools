@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, reactive, type Ref } from 'vue';
+import { computed, reactive, ref, type Ref } from 'vue';
 import TextLabel from 'src/components/text-label.vue';
 import { rewardChances, searchRewardSection } from 'src/logic/logic';
 import { useRewardStore } from 'src/stores/reward';
@@ -11,35 +11,23 @@ const documentStore = useDocumentStore();
 
 const { exmlSnippet, recentSource, productSearchTerm, rewardSearchTerm } = storeToRefs(rewardStore);
 const { fileXmlDoc } = storeToRefs(documentStore);
-const chancesInputType = recentSource.value === 'exml' ? 'Chances from EXML Snippet' : 'Reward ID Chances';	// Either "Reward ID Chances" or "Chances from EXML snippet"
-const source = reactive<{ [key: string]: Ref<XMLDocument | string | undefined> }>({
-	exml: exmlSnippet,
-	file: fileXmlDoc,
-})
-
+const chancesInputType = computed(() => recentSource.value === 'exml' ? 'Chances from EXML Snippet' : 'Reward ID Chances');	// Either "Reward ID Chances" or "Chances from EXML snippet"
 
 const divTable = computed(() => {
-	const keys = Object.keys(source);
-	const currentSource = recentSource.value
-	const currentSourceIndex = keys.findIndex(key => key === currentSource);
-	const backupSource = keys[keys.length - 1 - currentSourceIndex];
-	const activeSource = source[recentSource.value] || source[backupSource];
-	if (!activeSource) return [];
-
-	let dom: XMLDocument | undefined = undefined;
-	if (recentSource.value === 'exml') {
+	if (recentSource.value === 'exml' && exmlSnippet.value || exmlSnippet.value && !rewardSearchTerm.value) {
 		const parser = new DOMParser();
-		dom = parser.parseFromString(source[recentSource.value].value as string, 'text/xml');
-	} else {
-		dom = fileXmlDoc.value;
+		const dom = parser.parseFromString(exmlSnippet.value, 'text/xml');
+		const table = rewardChances(dom, productSearchTerm.value);
+		return table ?? [];
 	}
+	const dom = fileXmlDoc.value;
+
 	const rewardElement = searchRewardSection(dom, rewardSearchTerm.value);
 	if (!rewardElement) return [];
+
 	const table = rewardChances(rewardElement, productSearchTerm.value);
 	return table ?? [];
 })
-
-
 </script>
 
 <template>
