@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, reactive, ref, type Ref } from 'vue';
+import { computed } from 'vue';
 import TextLabel from 'src/components/text-label.vue';
 import { rewardChances, searchRewardSection } from 'src/logic/logic';
 import { useRewardStore } from 'src/stores/reward';
