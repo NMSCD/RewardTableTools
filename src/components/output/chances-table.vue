@@ -49,12 +49,12 @@ const divTable = computed(() => {
 <style scoped lang="scss">
 .chancesTable {
 	display: grid;
-	grid-template-columns: 0.1fr 1.5fr 1fr 0.3fr;
+	grid-template-columns: repeat(4, auto);
 	border: 1px solid black;
 
 	&>* {
 		border: 1px solid black;
-		padding: 0 2px;
+		padding-inline: 3px;
 		white-space: nowrap;
 	}
 
