@@ -10,7 +10,7 @@ export function processEXML(contents: string) {
 /**
  * searches the EXML section for a given reward and returns its DOM element
  */
-export function searchRewardSection(xmlDoc: XMLDocument | undefined, rewardId: string): Element | undefined {
+export function searchRewardSection(xmlDoc: XMLDocument | null, rewardId: string): Element | undefined {
 	if (!xmlDoc) return;
 	const xmlSectionDom = xmlDoc.querySelector(`[value="GcGenericRewardTableEntry.xml"] > [name="Id"][value=${rewardId} i], [value="GcRewardTableEntry.xml"] > [name="Id"][value=${rewardId} i]`)?.parentNode as Element | undefined;
 	return xmlSectionDom;

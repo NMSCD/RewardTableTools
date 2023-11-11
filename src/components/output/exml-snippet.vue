@@ -25,7 +25,7 @@ watch(data, (newValue) => {
 	if (newValue.exmlOutput) newValue.exmlOutput.innerText = xmlString;
 })
 
-function getXmlString(fileXmlDoc: XMLDocument | undefined, rewardSearchTerm: string) {
+function getXmlString(fileXmlDoc: XMLDocument | null, rewardSearchTerm: string) {
 	if (!fileXmlDoc || !rewardSearchTerm) return;
 	const domSection = searchRewardSection(fileXmlDoc, rewardSearchTerm);
 	if (!domSection) return;
