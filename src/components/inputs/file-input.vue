@@ -16,7 +16,7 @@ function updateLabel(file: File) {
 	fileName.value = file.name
 }
 
-function addFile(file: File | undefined = undefined) {
+function addFile(file: File | null = null) {
 	const uploadedFile = file ?? fileInput.value?.files?.[0];
 	if (!uploadedFile) return;
 	updateLabel(uploadedFile);
