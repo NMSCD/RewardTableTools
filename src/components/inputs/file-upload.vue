@@ -2,9 +2,6 @@
 import TextLabel from 'src/components/text-label.vue';
 import Tooltip from 'src/components/tooltip.vue';
 import FileInput from './file-input.vue';
-import { useDocumentStore } from 'src/stores/document';
-
-const documentStore = useDocumentStore();
 </script>
 
 <template>
@@ -13,7 +10,7 @@ const documentStore = useDocumentStore();
 			<text-label inputId="fileUpload">Upload REWARDTABLE.EXML</text-label>
 			<tooltip>Can be found in METADATA/REALITY/TABLES.</tooltip>
 		</div>
-		<file-input type="file" input-id="fileUpload" @change="documentStore.readFile($event.target)" />
+		<file-input type="file" input-id="fileUpload" />
 	</div>
 </template>
 
