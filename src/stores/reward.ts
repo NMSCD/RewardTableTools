@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 
 interface RewardState {
-  id: string | undefined;
+  id: string | null;
   productSearchTerm: string;
   rewardSearchTerm: string;
   exmlSnippet: string;
@@ -11,7 +11,7 @@ interface RewardState {
 export const useRewardStore = defineStore('reward', {
   state: (): RewardState => {
     return {
-      id: undefined,
+      id: null,
       productSearchTerm: '',
       rewardSearchTerm: '',
       exmlSnippet: '',

@@ -92,7 +92,7 @@ function getRewards(EXMLSection: Element | XMLDocument) {
       case 'ProductIds':
       case 'ProductList':
       case 'TechList':
-        const amount = entry?.querySelector(selector)?.childElementCount;
+        const amount = entry?.querySelector(selector)?.childElementCount; // NoSonar this is fine
         output = `List (${amount} entries)`;
         break;
 
@@ -117,7 +117,7 @@ function getRewards(EXMLSection: Element | XMLDocument) {
         break;
 
       case 'Stat':
-        const modify = entry?.querySelectorAll('[name="ModifyType"]')[1]?.getAttribute("value");
+        const modify = entry?.querySelectorAll('[name="ModifyType"]')[1]?.getAttribute("value");  // NoSonar this is fine
         output = `${modify} stat: ${getValue(entry, selector)}`;
         break;
 

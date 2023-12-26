@@ -9,10 +9,10 @@ export function buildTable(data: { IDs: string[], chances: string[], rewards: st
     const rewardType = data.rewards[i];
 
     const itemData = {
-      rewardNr: rewardNr + '.',
-      rewardType,
       itemId,
+      rewardType,
       chance: chance + '%',
+      rewardNr: rewardNr + '.',
     }
 
     const isSearchedItem = itemId.toLowerCase() === productSearchTerm?.toLowerCase();
