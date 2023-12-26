@@ -7,17 +7,17 @@ import OutputSection from 'src/components/output/output-section.vue';
 </script>
 
 <template>
-	<navbar />
-	<page-header />
-	<main>
-		<section id="input">
-			<section-header>Input</section-header>
-			<input-section />
-		</section>
+  <navbar />
+  <page-header />
+  <main>
+    <section id="input">
+      <section-header>Input</section-header>
+      <input-section />
+    </section>
 
-		<section id="output">
-			<section-header>Output</section-header>
-			<output-section />
-		</section>
-	</main>
+    <section id="output">
+      <section-header>Output</section-header>
+      <output-section />
+    </section>
+  </main>
 </template>

@@ -3,8 +3,8 @@ import { useDocumentStore } from 'src/stores/document';
 import { ref } from 'vue';
 
 defineProps<{
-	inputId: string;
-}>()
+  inputId: string;
+}>();
 
 const fileInput = ref<HTMLInputElement | null>(null);
 const fileName = ref('');
@@ -13,14 +13,14 @@ const dragActive = ref(false);
 const documentStore = useDocumentStore();
 
 function updateLabel(file: File) {
-	fileName.value = file.name
+  fileName.value = file.name;
 }
 
 function addFile(file: File | null = null) {
-	const uploadedFile = file ?? fileInput.value?.files?.[0];
-	if (!uploadedFile) return;
-	updateLabel(uploadedFile);
-	documentStore.readFile(uploadedFile);
+  const uploadedFile = file ?? fileInput.value?.files?.[0];
+  if (!uploadedFile) return;
+  updateLabel(uploadedFile);
+  documentStore.readFile(uploadedFile);
 }
 
 function dropFile(e: DragEvent) {
@@ -31,41 +31,53 @@ function dropFile(e: DragEvent) {
 </script>
 
 <template>
-	<div class="file has-name is-boxed">
-		<label :class="{'drag-active': dragActive}" class="file-label" :for="inputId" @dragenter="dragActive = true" @dragleave="dragActive = false" @drop.prevent="dropFile" @dragover.prevent>
-			<input ref="fileInput" class="file-input" type="file" :id="inputId" @change="addFile()" />
-			<span class="file-cta">
-				<span class="file-icon">
-					<i class="material-icons file-icon-element">upload</i>
-				</span>
-				<span class="file-label">
-					Choose a file...
-				</span>
-			</span>
-			<span class="file-name">
-				{{ fileName }}
-			</span>
-		</label>
-	</div>
+  <div class="file has-name is-boxed">
+    <label
+      :class="{ 'drag-active': dragActive }"
+      :for="inputId"
+      class="file-label"
+      @dragenter="dragActive = true"
+      @dragleave="dragActive = false"
+      @dragover.prevent
+      @drop.prevent="dropFile"
+    >
+      <input
+        :id="inputId"
+        class="file-input"
+        ref="fileInput"
+        type="file"
+        @change="addFile()"
+      />
+      <span class="file-cta">
+        <span class="file-icon">
+          <i class="material-icons file-icon-element">upload</i>
+        </span>
+        <span class="file-label"> Choose a file... </span>
+      </span>
+      <span class="file-name">
+        {{ fileName }}
+      </span>
+    </label>
+  </div>
 </template>
 
 <style scoped lang="scss">
 .file-label {
-	* {
-		pointer-events: none;
-	}
+  * {
+    pointer-events: none;
+  }
 
-	&.drag-active .file-cta,
-	&:hover .file-cta {
-		background-color: #eeeeee;
-}
+  &.drag-active .file-cta,
+  &:hover .file-cta {
+    background-color: #eeeeee;
+  }
 }
 
 .file-icon {
-	margin-right: 0;
+  margin-right: 0;
 
-	.file-icon-element {
-		font-size: 2rem;
-	}
+  .file-icon-element {
+    font-size: 2rem;
+  }
 }
 </style>

@@ -14,31 +14,33 @@ const exmlOutput = ref<HTMLPreElement | null>(null);
 const exmlString = ref('');
 
 const data = reactive({
-	fileXmlDoc: fileXmlDoc,
-	rewardSearchTerm: rewardSearchTerm,
-	exmlOutput: exmlOutput,
-})
+  fileXmlDoc: fileXmlDoc,
+  rewardSearchTerm: rewardSearchTerm,
+  exmlOutput: exmlOutput,
+});
 
 watch(data, (newValue) => {
-	const xmlString = getXmlString(newValue.fileXmlDoc, newValue.rewardSearchTerm) ?? '';
-	exmlString.value = xmlString;
-	if (newValue.exmlOutput) newValue.exmlOutput.innerText = xmlString;
-})
+  const xmlString = getXmlString(newValue.fileXmlDoc, newValue.rewardSearchTerm) ?? '';
+  exmlString.value = xmlString;
+  if (newValue.exmlOutput) newValue.exmlOutput.innerText = xmlString;
+});
 
 function getXmlString(fileXmlDoc: XMLDocument | null, rewardSearchTerm: string) {
-	if (!fileXmlDoc || !rewardSearchTerm) return;
-	const domSection = searchRewardSection(fileXmlDoc, rewardSearchTerm);
-	if (!domSection) return;
-	const serializer = new XMLSerializer();
-	const xmlString = serializer.serializeToString(domSection);
-	return xmlString;
+  if (!fileXmlDoc || !rewardSearchTerm) return;
+  const domSection = searchRewardSection(fileXmlDoc, rewardSearchTerm);
+  if (!domSection) return;
+  const serializer = new XMLSerializer();
+  const xmlString = serializer.serializeToString(domSection);
+  return xmlString;
 }
-
 </script>
 
 <template>
-	<div v-if="exmlString">
-		<text-label>Reward ID EXML snippet:</text-label>
-		<pre class="exml" ref="exmlOutput"></pre>
-	</div>
+  <div v-if="exmlString">
+    <text-label>Reward ID EXML snippet:</text-label>
+    <pre
+      class="exml"
+      ref="exmlOutput"
+    ></pre>
+  </div>
 </template>

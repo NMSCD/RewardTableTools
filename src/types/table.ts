@@ -1,4 +1,4 @@
 export interface DataTable {
-	htmlClass?: string;
-	content: string;
+  htmlClass?: string;
+  content: string;
 }
