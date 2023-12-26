@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import FileUpload from './file-upload.vue';
-import TextareaInput from './textarea-input.vue';
-import TextInput from './text-input.vue';
+import FileUpload from './FileUpload.vue';
+import TextareaInput from './TextareaInput.vue';
+import TextInput from './TextInput.vue';
 import { useRewardStore } from '@/stores/reward';
 import { storeToRefs } from 'pinia';
 import { processEXML, rewardChances } from '@/logic/logic';
@@ -24,23 +24,23 @@ function searchSnippet(exml: string, productSearchTerm: string) {
 <template>
   <div class="columns is-flex-wrap-wrap mb-5">
     <div class="column is-full-mobile is-one-third-tablet is-one-quarter-desktop">
-      <file-upload @input="rewardStore.setFile" />
+      <FileUpload @input="rewardStore.setFile" />
     </div>
     <div class="column is-full-mobile is-two-thirds-tablet is-one-third-desktop">
-      <text-input
+      <TextInput
         input-id="productInput"
         v-model="productSearchTerm"
-        >Enter your wanted Product ID</text-input
-      >
-      <text-input
+        >Enter your wanted Product ID
+      </TextInput>
+      <TextInput
         input-id="rewardInput"
         v-model="rewardSearchTerm"
-        >Enter reward ID to get chances for rewards</text-input
-      >
+        >Enter reward ID to get chances for rewards
+      </TextInput>
     </div>
 
     <div class="column is-full-mobile">
-      <textarea-input
+      <TextareaInput
         v-model="exmlSnippet"
         @input="rewardStore.setExml"
       />

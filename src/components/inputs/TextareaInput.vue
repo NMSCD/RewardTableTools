@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TextLabel from '@/components/text-label.vue';
+import TextLabel from '@/components/TextLabel.vue';
 
 defineProps<{
   modelValue: string;
@@ -8,7 +8,7 @@ defineProps<{
 
 <template>
   <div class="field">
-    <text-label inputId="exmlInput">Paste EXML here</text-label>
+    <TextLabel inputId="exmlInput">Paste EXML here</TextLabel>
     <textarea
       :value="modelValue"
       class="textarea"

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import HelpDialog from './dialog/help-dialog.vue';
+import HelpDialogue from './dialog/HelpDialogue.vue';
 import { useRewardStore } from '@/stores/reward';
 
 const rewardStore = useRewardStore();
@@ -12,7 +12,7 @@ const reset = () => rewardStore.$reset();
 </script>
 
 <template>
-  <help-dialog
+  <HelpDialogue
     :open="isModalOpen"
     @close-modal="switchModalVisibility"
   />

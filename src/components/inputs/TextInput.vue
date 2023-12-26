@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TextLabel from '@/components/text-label.vue';
+import TextLabel from '@/components/TextLabel.vue';
 
 defineProps<{
   inputId: string;
@@ -9,9 +9,9 @@ defineProps<{
 
 <template>
   <div class="field">
-    <text-label :input-id="inputId">
+    <TextLabel :input-id="inputId">
       <slot></slot>
-    </text-label>
+    </TextLabel>
     <div class="control">
       <input
         :id="inputId"

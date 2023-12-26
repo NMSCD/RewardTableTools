@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import HelperButtons from './helper-buttons.vue';
+import HelperButtons from './HelperButtons.vue';
 </script>
 
 <template>
   <h1 class="title is-3">Rewardtable Tools</h1>
-  <helper-buttons />
+  <HelperButtons />
 </template>
 
 <style scoped lang="scss">

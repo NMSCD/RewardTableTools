@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import TextLabel from '@/components/text-label.vue';
+import TextLabel from '@/components/TextLabel.vue';
 import { rewardChances, searchRewardSection } from '@/logic/logic';
 import { useRewardStore } from '@/stores/reward';
 import { storeToRefs } from 'pinia';
@@ -40,7 +40,7 @@ const divTable = computed(() => {
 
 <template>
   <div v-if="rewardSearchTerm">
-    <text-label> {{ chancesInputType }}: </text-label>
+    <TextLabel> {{ chancesInputType }}: </TextLabel>
     <div
       v-if="divTable?.length"
       class="chancesTable"

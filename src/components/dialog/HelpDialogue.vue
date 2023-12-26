@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import CloseButton from './close-button.vue';
+import CloseButton from './CloseButton.vue';
 
 const props = defineProps<{
   open: boolean;
@@ -63,7 +63,7 @@ const functionalities = [
       >. On every item is a "&lt;&gt;" icon in the top left of the in-game icon. When clicked, it displays the "GameId".
     </p>
     <p>You don't need to upload the REWARDTABLE.EXML if you are using the "Paste EXML" input.</p>
-    <close-button @close-modal="$emit('closeModal')" />
+    <CloseButton @close-modal="$emit('closeModal')" />
   </dialog>
 </template>
 
