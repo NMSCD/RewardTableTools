@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import TextLabel from '@/components/TextLabel.vue';
 import { useDocumentStore } from '@/stores/document';
 import { useRewardStore } from '@/stores/reward';
 import { reactive, ref, watch } from 'vue';
 import { searchRewardSection } from '@/logic/logic';
+import TextLabel from '../TextLabel.vue';
+import CopySection from '../CopySection.vue';
 
 const documentStore = useDocumentStore();
 const rewardStore = useRewardStore();
@@ -38,9 +39,16 @@ function getXmlString(fileXmlDoc: XMLDocument | null, rewardSearchTerm: string) 
 <template>
   <div v-if="exmlString">
     <TextLabel>Reward ID EXML snippet:</TextLabel>
-    <pre
-      class="exml"
-      ref="exmlOutput"
-    ></pre>
+    <pre class="exml-wrapper">
+      <div class="exml" ref="exmlOutput"></div>
+    <CopySection :section="exmlOutput" />
+  </pre>
   </div>
 </template>
+
+<style scoped lang="scss">
+.exml-wrapper {
+  display: flex;
+  align-items: start;
+}
+</style>
