@@ -2,9 +2,9 @@
 import FileUpload from './file-upload.vue';
 import TextareaInput from './textarea-input.vue';
 import TextInput from './text-input.vue';
-import { useRewardStore } from 'src/stores/reward';
+import { useRewardStore } from '@/stores/reward';
 import { storeToRefs } from 'pinia';
-import { processEXML, rewardChances } from 'src/logic/logic';
+import { processEXML, rewardChances } from '@/logic/logic';
 import { watch } from 'vue';
 
 const rewardStore = useRewardStore();

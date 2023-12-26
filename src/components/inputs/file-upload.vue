@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import TextLabel from 'src/components/text-label.vue';
-import Tooltip from 'src/components/tooltip.vue';
+import TextLabel from '@/components/text-label.vue';
+import Tooltip from '@/components/tooltip.vue';
 import FileInput from './file-input.vue';
 </script>
 

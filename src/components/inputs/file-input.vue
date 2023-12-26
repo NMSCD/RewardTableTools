@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useDocumentStore } from 'src/stores/document';
+import { useDocumentStore } from '@/stores/document';
 import { ref } from 'vue';
 
 defineProps<{

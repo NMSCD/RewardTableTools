@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import Navbar from 'src/components/navbar.vue';
-import PageHeader from 'src/components/page-header.vue';
-import SectionHeader from 'src/components/section-header.vue';
-import InputSection from 'src/components/inputs/input-section.vue';
-import OutputSection from 'src/components/output/output-section.vue';
+import Navbar from '@/components/navbar.vue';
+import PageHeader from '@/components/page-header.vue';
+import SectionHeader from '@/components/section-header.vue';
+import InputSection from '@/components/inputs/input-section.vue';
+import OutputSection from '@/components/output/output-section.vue';
 </script>
 
 <template>
