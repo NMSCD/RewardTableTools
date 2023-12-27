@@ -13,8 +13,8 @@ export function buildTable(
 
     const itemData = {
       rewardNr,
-      itemId,
       rewardType,
+      itemId,
       chance,
     };
 
