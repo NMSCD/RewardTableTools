@@ -1,26 +1,29 @@
-import type { DataTable } from "@/types/table";
+import type { DataTable } from '@/types/table';
 
-export function buildTable(data: { IDs: string[], chances: string[], rewards: string[] }, productSearchTerm: string): DataTable[] {
+export function buildTable(
+  data: { IDs: string[]; chances: string[]; rewards: string[] },
+  productSearchTerm: string
+): DataTable[] {
   const table: DataTable[] = [];
   for (let i = 0; i < data.IDs.length; i++) {
-    const rewardNr = (i + 1).toString();
+    const rewardNr = i + 1 + '.';
     const itemId = data.IDs[i];
-    const chance = data.chances[i];
+    const chance = data.chances[i] + '%';
     const rewardType = data.rewards[i];
 
     const itemData = {
+      rewardNr,
       itemId,
       rewardType,
-      chance: chance + '%',
-      rewardNr: rewardNr + '.',
-    }
+      chance,
+    };
 
     const isSearchedItem = itemId.toLowerCase() === productSearchTerm?.toLowerCase();
     const tableRow: DataTable[] = [];
     for (const content of Object.values(itemData)) {
       const tableItem: DataTable = {
         content,
-      }
+      };
       if (isSearchedItem) tableItem.htmlClass = 'mark';
 
       tableRow.push(tableItem);
@@ -32,21 +35,21 @@ export function buildTable(data: { IDs: string[], chances: string[], rewards: st
 
 export function constructData(EXMLSection: XMLDocument | Element, IDs: string[], chances: string[], rewards: string[]) {
   const data = {
-    "IDs": IDs,
-    "chances": calculateChances(EXMLSection, chances),
-    "rewards": rewards
-  }
+    IDs: IDs,
+    chances: calculateChances(EXMLSection, chances),
+    rewards: rewards,
+  };
   return data;
 }
 
 function calculateChances(EXMLSection: XMLDocument | Element, PercentageChances: string[]) {
-  if (EXMLSection.querySelector('[name="RewardChoice"]')?.getAttribute("value") === 'GiveAll') return PercentageChances;
+  if (EXMLSection.querySelector('[name="RewardChoice"]')?.getAttribute('value') === 'GiveAll') return PercentageChances;
 
   const calculatedChances: string[] = [];
   const chances = PercentageChances.map(Number);
 
   for (const chance of chances) {
-    const calcChance = chance / (chances.reduce((a, b) => a + b, 0) / 100);		// NoSonar this is calculating a percentage
+    const calcChance = chance / (chances.reduce((a, b) => a + b, 0) / 100); // NoSonar this is calculating a percentage
     const decimals = 3;
     calculatedChances.push(calcChance.toFixed(decimals));
   }
