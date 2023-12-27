@@ -35,9 +35,9 @@ export function buildTable(
 
 export function constructData(EXMLSection: XMLDocument | Element, IDs: string[], chances: string[], rewards: string[]) {
   const data = {
-    IDs: IDs,
+    IDs,
+    rewards,
     chances: calculateChances(EXMLSection, chances),
-    rewards: rewards,
   };
   return data;
 }

@@ -40,7 +40,7 @@ const divTable = computed(() => {
 
 <template>
   <div v-if="rewardSearchTerm">
-    <TextLabel> {{ chancesInputType }}: </TextLabel>
+    <TextLabel>{{ chancesInputType }}:</TextLabel>
     <div
       v-if="divTable?.length"
       class="chancesTable"
