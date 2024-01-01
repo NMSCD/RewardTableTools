@@ -14,7 +14,7 @@
     "bulma": "^0.9.4",
     "pinia": "^2.1.7",
     "sass": "^1.62.1",
-    "vue": "^3.3.13"
+    "vue": "^3.4.3"
   },
   "devDependencies": {
     "@tsconfig/node20": "^20.1.2",
