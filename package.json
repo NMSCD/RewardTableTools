@@ -13,7 +13,7 @@
     "bulma": "^0.9.4",
     "pinia": "^2.1.7",
     "sass": "^1.76.0",
-    "vue": "^3.4.26"
+    "vue": "^3.4.27"
   },
   "devDependencies": {
     "@types/node": "^20.12.8",
