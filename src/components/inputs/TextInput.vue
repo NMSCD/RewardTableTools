@@ -3,8 +3,9 @@ import TextLabel from '@/components/TextLabel.vue';
 
 defineProps<{
   inputId: string;
-  modelValue: string;
 }>();
+
+const model = defineModel({ type: String, required: true });
 </script>
 
 <template>
@@ -14,11 +15,10 @@ defineProps<{
     </TextLabel>
     <div class="control">
       <input
+        v-model="model"
         :id="inputId"
-        :value="modelValue"
         class="input"
         type="text"
-        @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
       />
     </div>
   </div>
