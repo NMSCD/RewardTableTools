@@ -1,11 +1,5 @@
 <template>
   <form method="dialog">
-    <button
-      class="button"
-      autofocus
-      @click="$emit('closeModal')"
-    >
-      Close
-    </button>
+    <button class="button">Close</button>
   </form>
 </template>
