@@ -4,6 +4,7 @@ import TextLabel from '@/components/TextLabel.vue';
 import { rewardChances, searchRewardSection } from '@/logic/logic';
 import { useRewardStore } from '@/stores/reward';
 import { storeToRefs } from 'pinia';
+import TableCell from './TableCell.vue';
 
 const rewardStore = useRewardStore();
 const { activeSource, productSearchTerm, rewardSearchTerm, xmlDoc } = storeToRefs(rewardStore);
@@ -24,18 +25,17 @@ const divTable = computed(() => {
 </script>
 
 <template>
-  <div>
+  <div v-if="rewardSearchTerm">
     <TextLabel>{{ chancesInputType }}:</TextLabel>
     <div
       v-if="divTable?.length"
       class="chancesTable"
     >
-      <div
+      <TableCell
         v-for="cell in divTable"
         :class="cell.htmlClass ?? null"
-      >
-        {{ cell.content }}
-      </div>
+        :content="cell.content"
+      />
     </div>
     <div v-else>Reward not found!</div>
   </div>
@@ -63,7 +63,10 @@ const divTable = computed(() => {
 
   & > .mark {
     background-color: yellow;
-    color: black;
+
+    &:not(a) {
+      color: black;
+    }
   }
 
   & > .rarity,

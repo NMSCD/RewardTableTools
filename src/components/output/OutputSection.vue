@@ -6,7 +6,7 @@ import { useRewardStore } from '@/stores/reward';
 import { storeToRefs } from 'pinia';
 
 const rewardStore = useRewardStore();
-const { activeSource, rewardSearchTerm, productSearchTerm } = storeToRefs(rewardStore);
+const { activeSource, productSearchTerm } = storeToRefs(rewardStore);
 </script>
 
 <template>
@@ -18,10 +18,7 @@ const { activeSource, rewardSearchTerm, productSearchTerm } = storeToRefs(reward
       />
     </div>
     <div class="columns is-desktop">
-      <ChancesTable
-        v-if="rewardSearchTerm"
-        class="column is-full-mobile"
-      />
+      <ChancesTable class="column is-full-mobile" />
       <ExmlSnippet
         v-if="activeSource === 'file'"
         class="column is-full-mobile"
