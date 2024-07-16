@@ -17,7 +17,7 @@ import FileInput from './FileInput.vue';
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .label-tooltip {
   display: flex;
   gap: 0.25rem;

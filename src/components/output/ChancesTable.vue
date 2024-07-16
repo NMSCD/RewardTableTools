@@ -4,31 +4,17 @@ import TextLabel from '@/components/TextLabel.vue';
 import { rewardChances, searchRewardSection } from '@/logic/logic';
 import { useRewardStore } from '@/stores/reward';
 import { storeToRefs } from 'pinia';
-import { useDocumentStore } from '@/stores/document';
+import TableCell from './TableCell.vue';
 
 const rewardStore = useRewardStore();
-const documentStore = useDocumentStore();
+const { activeSource, productSearchTerm, rewardSearchTerm, xmlDoc } = storeToRefs(rewardStore);
 
-const { exmlSnippet, recentSource, productSearchTerm, rewardSearchTerm } = storeToRefs(rewardStore);
-const { fileXmlDoc } = storeToRefs(documentStore);
-
-const activeSource = computed(() =>
-  (recentSource.value === 'exml' && exmlSnippet.value) || (exmlSnippet.value && !rewardSearchTerm.value)
-    ? 'exml'
-    : 'file'
-);
 const chancesInputType = computed(() =>
   activeSource.value === 'exml' ? 'Chances from EXML Snippet' : 'Reward ID Chances'
 );
 
 const divTable = computed(() => {
-  if (activeSource.value === 'exml') {
-    const parser = new DOMParser();
-    const dom = parser.parseFromString(exmlSnippet.value, 'text/xml');
-    const table = rewardChances(dom, productSearchTerm.value);
-    return table ?? [];
-  }
-  const dom = fileXmlDoc.value;
+  const dom = xmlDoc.value[activeSource.value];
 
   const rewardElement = searchRewardSection(dom, rewardSearchTerm.value);
   if (!rewardElement) return [];
@@ -45,25 +31,24 @@ const divTable = computed(() => {
       v-if="divTable?.length"
       class="chancesTable"
     >
-      <div
+      <TableCell
         v-for="cell in divTable"
         :class="cell.htmlClass ?? null"
-      >
-        {{ cell.content }}
-      </div>
+        :content="cell.content"
+      />
     </div>
     <div v-else>Reward not found!</div>
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .chancesTable {
   display: grid;
   grid-template-columns: repeat(4, auto);
-  border: 1px solid black;
+  border: 1px solid var(--bulma-body-color);
 
   & > * {
-    border: 1px solid black;
+    border: 1px solid var(--bulma-body-color);
     padding-inline: 3px;
     white-space: nowrap;
   }
@@ -78,7 +63,10 @@ const divTable = computed(() => {
 
   & > .mark {
     background-color: yellow;
-    color: black;
+
+    &:not(a) {
+      color: black;
+    }
   }
 
   & > .rarity,
@@ -91,8 +79,12 @@ const divTable = computed(() => {
     }
   }
 
-  .rarity ~ .rarity:not(.rarity + .rarity) {
-    display: none;
+  /* selects .rarity with a directly following .rarity sibling, or where .rarity is the last child */
+  .rarity {
+    &:has(+ .rarity),
+    &:last-child {
+      display: none;
+    }
   }
 }
 </style>

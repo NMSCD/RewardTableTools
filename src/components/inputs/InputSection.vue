@@ -4,20 +4,35 @@ import TextareaInput from './TextareaInput.vue';
 import TextInput from './TextInput.vue';
 import { useRewardStore } from '@/stores/reward';
 import { storeToRefs } from 'pinia';
-import { processEXML, rewardChances } from '@/logic/logic';
-import { watch } from 'vue';
+import { rewardChances } from '@/logic/logic';
+import { watchEffect } from 'vue';
+import SourceSelector from './SourceSelector.vue';
 
 const rewardStore = useRewardStore();
-const { productSearchTerm, rewardSearchTerm, exmlSnippet } = storeToRefs(rewardStore);
+const { productSearchTerm, rewardSearchTerm, exmlSnippet, xmlDoc, activeSource } = storeToRefs(rewardStore);
 
-watch(exmlSnippet, (newValue) => {
-  if (newValue && productSearchTerm.value) searchSnippet(newValue, productSearchTerm.value);
+watchEffect(() => {
+  const rewardTableEntries = xmlDoc.value[activeSource.value]?.querySelectorAll(
+    '[value="GcGenericRewardTableEntry.xml"] > [name="Id"]'
+  );
+
+  if (rewardTableEntries?.length === 1) rewardSearchTerm.value = rewardTableEntries[0].getAttribute('value') ?? '';
 });
 
-function searchSnippet(exml: string, productSearchTerm: string) {
-  if (!exml) return;
-  const snippetXmlDoc = processEXML(exml); // populate xmlDoc variable
-  rewardChances(snippetXmlDoc, productSearchTerm);
+watchEffect(() => {
+  const currentlyActiveDoc = xmlDoc.value[activeSource.value];
+  if (!currentlyActiveDoc) return;
+  rewardChances(currentlyActiveDoc, productSearchTerm.value);
+});
+
+function processSnippet() {
+  if (exmlSnippet.value) {
+    rewardStore.setExml();
+    rewardStore.textToDoc(exmlSnippet.value);
+  } else {
+    xmlDoc.value.exml = null;
+    rewardStore.setFile();
+  }
 }
 </script>
 
@@ -42,8 +57,9 @@ function searchSnippet(exml: string, productSearchTerm: string) {
     <div class="column is-full-mobile">
       <TextareaInput
         v-model="exmlSnippet"
-        @input="rewardStore.setExml"
+        @input="processSnippet"
       />
     </div>
+    <SourceSelector v-if="xmlDoc.exml && xmlDoc.file" />
   </div>
 </template>

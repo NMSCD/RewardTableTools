@@ -1,43 +1,19 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue';
 import CloseButton from './CloseButton.vue';
 
-const props = defineProps<{
-  open: boolean;
-}>();
-
-const dialogElement = ref<HTMLDialogElement | null>(null);
-
-watch(
-  () => props.open,
-  (newState) => {
-    if (newState === true && dialogElement.value) dialogElement.value.showModal();
-  }
-);
-
 const functionalities = [
-  {
-    text: 'Search the entire REWARDTABLE for a specific Product ID',
-  },
-  {
-    text: 'Search for a specific reward ID and display the chances of its individual rewards',
-  },
-  {
-    text: 'Paste an EXML snippet of a reward and get the chances of the individual rewards',
-  },
+  'Search the entire REWARDTABLE for a specific Product ID',
+  'Search for a specific reward ID and display the chances of its individual rewards',
+  'Paste an EXML snippet of a reward and get the chances of the individual rewards',
 ];
 </script>
 
 <template>
-  <dialog
-    ref="dialogElement"
-    id="explanation"
-    class="modal-content"
-  >
+  <div class="p-4">
     <p>This web app has multiple functionalities:</p>
     <ul>
       <li v-for="functionality in functionalities">
-        {{ functionality.text }}
+        {{ functionality }}
       </li>
     </ul>
     <p>
@@ -63,29 +39,22 @@ const functionalities = [
       >. On every item is a "&lt;&gt;" icon in the top left of the in-game icon. When clicked, it displays the "GameId".
     </p>
     <p>You don't need to upload the REWARDTABLE.EXML if you are using the "Paste EXML" input.</p>
-    <CloseButton @close-modal="$emit('closeModal')" />
-  </dialog>
+    <CloseButton />
+  </div>
 </template>
 
-<style scoped lang="scss">
-dialog {
-  margin-top: 5vh !important;
-  border-radius: 7px;
-  box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.02);
-  border: 1px solid lightgrey;
+<style scoped>
+form {
+  display: flex;
+  justify-content: space-around;
+}
 
-  form {
-    display: flex;
-    justify-content: space-around;
-  }
+ul {
+  list-style: inside;
+  margin: 0.2rem 0;
+}
 
-  ul {
-    list-style: inside;
-    margin: 0.2em 0;
-  }
-
-  p:not(:first-child) {
-    margin-bottom: 1em;
-  }
+p:not(:first-child) {
+  margin-bottom: 1rem;
 }
 </style>

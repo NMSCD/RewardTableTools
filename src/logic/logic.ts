@@ -3,7 +3,7 @@ import { buildTable, constructData } from './tableBuilder';
 
 export function processEXML(contents: string) {
   const parser = new DOMParser();
-  const returnValue = parser.parseFromString(contents, "text/xml");
+  const returnValue = parser.parseFromString(contents, 'text/xml');
   return returnValue;
 }
 
@@ -11,33 +11,38 @@ export function processEXML(contents: string) {
  * searches the EXML section for a given reward and returns its DOM element
  */
 export function searchRewardSection(xmlDoc: XMLDocument | null, rewardId: string): Element | undefined {
-  if (!xmlDoc) return;
-  const xmlSectionDom = xmlDoc.querySelector(`[value="GcGenericRewardTableEntry.xml"] > [name="Id"][value=${rewardId} i], [value="GcRewardTableEntry.xml"] > [name="Id"][value=${rewardId} i]`)?.parentNode as Element | undefined;
+  const xmlSectionDom = xmlDoc?.querySelector(
+    `[value="GcGenericRewardTableEntry.xml"] > [name="Id"][value=${rewardId} i], [value="GcRewardTableEntry.xml"] > [name="Id"][value=${rewardId} i]`
+  )?.parentNode;
+  if (!(xmlSectionDom instanceof Element)) return;
   return xmlSectionDom;
 }
 
 export function rewardChances(EXMLSection: XMLDocument | Element, productSearchTerm: string) {
   const table: DataTable[] = [];
 
-  if (EXMLSection.parentNode?.querySelector('[value="GcRewardTableEntry.xml"]') || EXMLSection.querySelector('[value="GcRewardTableEntry.xml"]')) {
+  if (
+    EXMLSection.parentNode?.querySelector('[value="GcRewardTableEntry.xml"]') ||
+    EXMLSection.querySelector('[value="GcRewardTableEntry.xml"]')
+  ) {
     const rarityElements: HTMLCollection | undefined | null = EXMLSection?.querySelector('[name="Rarities"]')?.children;
     if (!rarityElements) return;
-    const rarities = Array.from(rarityElements)
+    const rarities = Array.from(rarityElements);
 
     for (const rarity of rarities) {
       const sizeElements = rarity?.querySelector('[name="Sizes"]')?.children;
       if (!sizeElements) continue;
       const sizes = Array.from(sizeElements);
-      const rarityName = rarity.getAttribute("name");
+      const rarityName = rarity.getAttribute('name');
       if (!rarityName) continue;
       const rarityHeader: DataTable = {
         htmlClass: 'rarity',
-        content: rarityName
-      }
+        content: rarityName,
+      };
       table.push(rarityHeader);
 
       for (const size of sizes) {
-        const sizeName = size.getAttribute("name");
+        const sizeName = size.getAttribute('name');
         if (!sizeName) continue;
         const rewardData = getRewards(size);
 
@@ -46,9 +51,9 @@ export function rewardChances(EXMLSection: XMLDocument | Element, productSearchT
         const sizeHeader: DataTable = {
           htmlClass: 'size',
           content: sizeName,
-        }
+        };
         const tablePart = buildTable(rewardData, productSearchTerm);
-        table.push(sizeHeader, ...tablePart)
+        table.push(sizeHeader, ...tablePart);
       }
     }
   } else {
@@ -69,7 +74,22 @@ function getRewards(EXMLSection: Element | XMLDocument) {
   const chances: string[] = [];
   const rewards: string[] = [];
 
-  const selectors = ['ID', 'ProductList', 'Items', 'ProductIds', 'TechList', 'Currency', 'ProceduralProductCategory', 'Group', 'TechId', 'Event', 'Stat', 'CreatureID', 'ProductID', 'Reward'];
+  const selectors = [
+    'ID',
+    'ProductList',
+    'Items',
+    'ProductIds',
+    'TechList',
+    'Currency',
+    'ProceduralProductCategory',
+    'Group',
+    'TechId',
+    'Event',
+    'Stat',
+    'CreatureID',
+    'ProductID',
+    'Reward',
+  ];
 
   for (const entry of entries) {
     let type, output;
@@ -113,11 +133,11 @@ function getRewards(EXMLSection: Element | XMLDocument) {
         break;
 
       case 'Currency':
-        output = entry?.querySelectorAll(selector)[1]?.getAttribute("value");
+        output = entry?.querySelectorAll(selector)[1]?.getAttribute('value');
         break;
 
       case 'Stat':
-        const modify = entry?.querySelectorAll('[name="ModifyType"]')[1]?.getAttribute("value");  // NoSonar this is fine
+        const modify = entry?.querySelectorAll('[name="ModifyType"]')[1]?.getAttribute('value'); // NoSonar this is fine
         output = `${modify} stat: ${getValue(entry, selector)}`;
         break;
 
@@ -126,16 +146,16 @@ function getRewards(EXMLSection: Element | XMLDocument) {
         break;
 
       default:
-        output = "Error";
+        output = 'Error';
     }
     if (output) IDs.push(output);
 
     const chanceElement = entry.querySelector('[name="PercentageChance"]');
-    const chance = chanceElement?.getAttribute("value");
+    const chance = chanceElement?.getAttribute('value');
     chances.push(chance ?? 'Error');
 
     const rewardElement = entry.querySelector('[name="Reward"]');
-    const reward = rewardElement?.getAttribute("value");
+    const reward = rewardElement?.getAttribute('value');
     rewards.push(reward ?? 'Error');
   }
   const data = constructData(EXMLSection, IDs, chances, rewards);
@@ -143,5 +163,5 @@ function getRewards(EXMLSection: Element | XMLDocument) {
 }
 
 function getValue(entry: Element, selector: string) {
-  return entry?.querySelector(selector)?.getAttribute("value");
+  return entry?.querySelector(selector)?.getAttribute('value');
 }

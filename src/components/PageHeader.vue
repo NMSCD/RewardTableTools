@@ -3,12 +3,6 @@ import HelperButtons from './HelperButtons.vue';
 </script>
 
 <template>
-  <h1 class="title is-3">Rewardtable Tools</h1>
+  <h1 class="title is-3 has-text-centered">Rewardtable Tools</h1>
   <HelperButtons />
 </template>
-
-<style scoped lang="scss">
-h1 {
-  text-align: center;
-}
-</style>

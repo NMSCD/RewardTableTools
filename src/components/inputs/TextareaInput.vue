@@ -1,19 +1,16 @@
 <script setup lang="ts">
 import TextLabel from '@/components/TextLabel.vue';
 
-defineProps<{
-  modelValue: string;
-}>();
+const model = defineModel({ type: String, required: true });
 </script>
 
 <template>
   <div class="field">
     <TextLabel inputId="exmlInput">Paste EXML here</TextLabel>
     <textarea
-      :value="modelValue"
+      v-model="model"
       class="textarea"
       id="exmlInput"
-      @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
     ></textarea>
   </div>
 </template>

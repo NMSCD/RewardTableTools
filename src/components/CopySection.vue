@@ -2,14 +2,14 @@
 import { computed, ref } from 'vue';
 
 const props = defineProps<{
-  section: HTMLPreElement | null;
+  data: string;
 }>();
 
 const isCopied = ref(false);
 
 function copySection() {
-  if (!props.section) return;
-  navigator.clipboard.writeText(props.section.innerText);
+  if (!props.data) return;
+  navigator.clipboard.writeText(props.data);
 
   isCopied.value = true;
   setTimeout(() => {
@@ -29,7 +29,7 @@ const icon = computed(() => (isCopied.value ? 'done' : 'content_copy'));
   </i>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .copy-icon {
   cursor: pointer;
   border-radius: 100%;

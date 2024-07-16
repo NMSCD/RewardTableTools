@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useDocumentStore } from '@/stores/document';
+import { useRewardStore } from '@/stores/reward';
 import { ref } from 'vue';
 
 defineProps<{
@@ -10,7 +10,7 @@ const fileInput = ref<HTMLInputElement | null>(null);
 const fileName = ref('');
 const dragActive = ref(false);
 
-const documentStore = useDocumentStore();
+const rewardStore = useRewardStore();
 
 function updateLabel(file: File) {
   fileName.value = file.name;
@@ -20,7 +20,7 @@ function addFile(file: File | null = null) {
   const uploadedFile = file ?? fileInput.value?.files?.[0];
   if (!uploadedFile) return;
   updateLabel(uploadedFile);
-  documentStore.readFile(uploadedFile);
+  rewardStore.readFile(uploadedFile);
 }
 
 function dropFile(e: DragEvent) {
@@ -49,10 +49,10 @@ function dropFile(e: DragEvent) {
         @change="addFile()"
       />
       <span class="file-cta">
-        <span class="file-icon">
+        <span class="mr-0">
           <i class="material-icons file-icon-element">upload</i>
         </span>
-        <span class="file-label"> Choose a file... </span>
+        <span class="file-label">Choose a file...</span>
       </span>
       <span class="file-name">
         {{ fileName }}
@@ -61,7 +61,7 @@ function dropFile(e: DragEvent) {
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .file-label {
   * {
     pointer-events: none;
@@ -69,15 +69,11 @@ function dropFile(e: DragEvent) {
 
   &.drag-active .file-cta,
   &:hover .file-cta {
-    background-color: #eeeeee;
+    background-color: #8080804a;
   }
 }
 
-.file-icon {
-  margin-right: 0;
-
-  .file-icon-element {
-    font-size: 2rem;
-  }
+.file-icon-element {
+  font-size: 2rem;
 }
 </style>

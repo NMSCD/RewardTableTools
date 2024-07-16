@@ -10,7 +10,7 @@
   </span>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .tooltip {
   position: relative;
   margin-block-start: 2px;
