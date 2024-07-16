@@ -79,8 +79,12 @@ const divTable = computed(() => {
     }
   }
 
-  .rarity ~ .rarity:not(.rarity + .rarity) {
-    display: none;
+  /* selects .rarity with a directly following .rarity sibling, or where .rarity is the last child */
+  .rarity {
+    &:has(+ .rarity),
+    &:last-child {
+      display: none;
+    }
   }
 }
 </style>
