@@ -1,22 +1,19 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { useDocumentStore } from '@/stores/document';
 import { useRewardStore } from '@/stores/reward';
 import { computed } from 'vue';
 import { searchRewardSection } from '@/logic/logic';
 import TextLabel from '../TextLabel.vue';
 import CopySection from '../CopySection.vue';
 
-const documentStore = useDocumentStore();
 const rewardStore = useRewardStore();
-const { fileXmlDoc } = storeToRefs(documentStore);
-const { rewardSearchTerm } = storeToRefs(rewardStore);
+const { rewardSearchTerm, xmlDoc } = storeToRefs(rewardStore);
 
-const exmlString = computed(() => getXmlString(fileXmlDoc.value, rewardSearchTerm.value) ?? '');
+const exmlString = computed(() => getXmlString(xmlDoc.value.file, rewardSearchTerm.value) ?? '');
 
-function getXmlString(fileXmlDoc: XMLDocument | null, rewardSearchTerm: string) {
-  if (!fileXmlDoc || !rewardSearchTerm) return;
-  const domSection = searchRewardSection(fileXmlDoc, rewardSearchTerm);
+function getXmlString(dom: XMLDocument | null, rewardSearchTerm: string) {
+  if (!dom || !rewardSearchTerm) return;
+  const domSection = searchRewardSection(dom, rewardSearchTerm);
   if (!domSection) return;
   const serializer = new XMLSerializer();
   const xmlString = serializer.serializeToString(domSection);
