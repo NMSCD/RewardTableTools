@@ -6,6 +6,9 @@ import vue from '@vitejs/plugin-vue';
 export default defineConfig({
   base: '/RewardTableTools/',
   plugins: [vue()],
+  build: {
+    target: 'ESNext',
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
