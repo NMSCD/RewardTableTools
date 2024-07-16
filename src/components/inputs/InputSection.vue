@@ -5,13 +5,13 @@ import TextInput from './TextInput.vue';
 import { useRewardStore } from '@/stores/reward';
 import { storeToRefs } from 'pinia';
 import { processEXML, rewardChances } from '@/logic/logic';
-import { watch } from 'vue';
+import { watchEffect } from 'vue';
 
 const rewardStore = useRewardStore();
 const { productSearchTerm, rewardSearchTerm, exmlSnippet } = storeToRefs(rewardStore);
 
-watch(exmlSnippet, (newValue) => {
-  if (newValue && productSearchTerm.value) searchSnippet(newValue, productSearchTerm.value);
+watchEffect(() => {
+  if (exmlSnippet.value && productSearchTerm.value) searchSnippet(exmlSnippet.value, productSearchTerm.value);
 });
 
 function searchSnippet(exml: string, productSearchTerm: string) {
