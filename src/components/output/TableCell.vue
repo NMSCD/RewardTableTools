@@ -20,13 +20,14 @@ onMounted(async () => {
 </script>
 
 <template>
-  <a
-    v-if="assistantLink"
-    :href="assistantLink"
-    rel="noopener noreferrer"
-    target="_blank"
-    :title="itemName ?? ''"
-    >{{ content }}</a
-  >
+  <div v-if="assistantLink">
+    <a
+      :href="assistantLink"
+      rel="noopener noreferrer"
+      target="_blank"
+      :title="itemName ?? ''"
+      >{{ content }}</a
+    >
+  </div>
   <div v-else>{{ content }}</div>
 </template>
