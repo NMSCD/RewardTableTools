@@ -46,7 +46,7 @@ function getXmlString(fileXmlDoc: XMLDocument | null, rewardSearchTerm: string) 
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .exml-wrapper {
   display: flex;
   align-items: start;

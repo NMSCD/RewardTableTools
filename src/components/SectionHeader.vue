@@ -4,7 +4,7 @@
   </h2>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .section-header {
   padding-bottom: 5px;
   border-bottom: 1px solid lightgrey;

@@ -1,5 +1,5 @@
 import 'bulma';
-import './scss/style.scss'
+import './style/style.css'
 
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';

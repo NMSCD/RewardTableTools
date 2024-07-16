@@ -32,7 +32,7 @@ const results = computed(() => {
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .reward-list {
   list-style: inside;
   display: grid;

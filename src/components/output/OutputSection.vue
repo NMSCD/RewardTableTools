@@ -16,7 +16,7 @@ import RewardList from './RewardList.vue';
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .output-section {
   gap: 1rem;
 }

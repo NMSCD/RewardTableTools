@@ -34,7 +34,7 @@ const reset = () => rewardStore.$reset();
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .helper-buttons {
   margin-block-end: 1em;
 

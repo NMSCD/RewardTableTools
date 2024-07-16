@@ -56,7 +56,7 @@ const divTable = computed(() => {
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .chancesTable {
   display: grid;
   grid-template-columns: repeat(4, auto);

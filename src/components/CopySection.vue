@@ -29,7 +29,7 @@ const icon = computed(() => (isCopied.value ? 'done' : 'content_copy'));
   </i>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .copy-icon {
   cursor: pointer;
   border-radius: 100%;

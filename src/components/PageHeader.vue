@@ -7,7 +7,7 @@ import HelperButtons from './HelperButtons.vue';
   <HelperButtons />
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 h1 {
   text-align: center;
 }

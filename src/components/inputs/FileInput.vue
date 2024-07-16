@@ -61,7 +61,7 @@ function dropFile(e: DragEvent) {
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .file-label {
   * {
     pointer-events: none;

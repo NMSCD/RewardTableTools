@@ -67,7 +67,7 @@ const functionalities = [
   </dialog>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 dialog {
   margin-top: 5vh !important;
   border-radius: 7px;
