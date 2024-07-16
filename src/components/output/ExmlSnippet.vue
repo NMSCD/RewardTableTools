@@ -2,7 +2,7 @@
 import { storeToRefs } from 'pinia';
 import { useDocumentStore } from '@/stores/document';
 import { useRewardStore } from '@/stores/reward';
-import { computed, reactive } from 'vue';
+import { computed } from 'vue';
 import { searchRewardSection } from '@/logic/logic';
 import TextLabel from '../TextLabel.vue';
 import CopySection from '../CopySection.vue';
@@ -12,12 +12,7 @@ const rewardStore = useRewardStore();
 const { fileXmlDoc } = storeToRefs(documentStore);
 const { rewardSearchTerm } = storeToRefs(rewardStore);
 
-const data = reactive({
-  fileXmlDoc: fileXmlDoc,
-  rewardSearchTerm: rewardSearchTerm,
-});
-
-const exmlString = computed(() => getXmlString(data.fileXmlDoc, data.rewardSearchTerm) ?? '');
+const exmlString = computed(() => getXmlString(fileXmlDoc.value, rewardSearchTerm.value) ?? '');
 
 function getXmlString(fileXmlDoc: XMLDocument | null, rewardSearchTerm: string) {
   if (!fileXmlDoc || !rewardSearchTerm) return;
