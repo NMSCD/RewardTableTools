@@ -69,7 +69,7 @@ function dropFile(e: DragEvent) {
 
   &.drag-active .file-cta,
   &:hover .file-cta {
-    background-color: #eeeeee;
+    background-color: #8080804a;
   }
 }
 

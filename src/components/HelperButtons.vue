@@ -14,7 +14,7 @@ const closeModal = () => dialogElement.value?.close();
 
 <template>
   <dialog
-    class="modal-content box m-auto"
+    class="modal-content box m-auto p-0"
     ref="dialogElement"
     @click.self="closeModal"
   >
@@ -38,8 +38,10 @@ const closeModal = () => dialogElement.value?.close();
 
 <style scoped>
 dialog {
+  max-width: 640px;
   display: none;
   margin-block-start: 5vh !important;
+  border: 1px solid #80808080;
 
   &[open] {
     display: block;

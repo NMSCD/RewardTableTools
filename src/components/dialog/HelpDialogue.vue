@@ -9,7 +9,7 @@ const functionalities = [
 </script>
 
 <template>
-  <div>
+  <div class="p-4">
     <p>This web app has multiple functionalities:</p>
     <ul>
       <li v-for="functionality in functionalities">

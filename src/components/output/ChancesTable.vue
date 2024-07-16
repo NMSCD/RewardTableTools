@@ -45,10 +45,10 @@ const divTable = computed(() => {
 .chancesTable {
   display: grid;
   grid-template-columns: repeat(4, auto);
-  border: 1px solid black;
+  border: 1px solid var(--bulma-body-color);
 
   & > * {
-    border: 1px solid black;
+    border: 1px solid var(--bulma-body-color);
     padding-inline: 3px;
     white-space: nowrap;
   }
