@@ -10,7 +10,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "bulma": "^1.0.1",
+    "bulma": "^1.0.2",
     "pinia": "^2.2.0",
     "vue": "^3.4.33"
   },
