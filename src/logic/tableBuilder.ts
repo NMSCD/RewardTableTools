@@ -18,7 +18,7 @@ export function buildTable(
       chance,
     };
 
-    const isSearchedItem = itemId.toLowerCase() === productSearchTerm?.toLowerCase();
+    const isSearchedItem = itemId.toLowerCase() === productSearchTerm.toLowerCase();
     const tableRow: DataTable[] = [];
     for (const content of Object.values(itemData)) {
       const tableItem: DataTable = {
