@@ -371,7 +371,7 @@
     "typescript/prefer-readonly": "warn",
     "typescript/no-unnecessary-qualifier": "warn",
     "typescript/prefer-find": "warn",
-    "typescript/prefer-readonly-parameter-types": ["warn", { "ignoreInferredTypes": true }],
+    "typescript/prefer-readonly-parameter-types": ["off", { "ignoreInferredTypes": true }],
     "typescript/strict-void-return": "warn",
     "typescript/consistent-type-exports": "warn",
     "typescript/unified-signatures": "warn",
