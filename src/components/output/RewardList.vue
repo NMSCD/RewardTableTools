@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { storeToRefs } from 'pinia';
-import { useRewardStore } from '@/stores/reward';
+import TextLabel from '@/components/TextLabel.vue';
 import { computed } from 'vue';
 import { searchReward } from '@/logic/rewardList';
-import TextLabel from '@/components/TextLabel.vue';
+import { storeToRefs } from 'pinia';
+import { useRewardStore } from '@/stores/reward';
 
 const rewardStore = useRewardStore();
 const { productSearchTerm, xmlDoc, activeSource } = storeToRefs(rewardStore);
@@ -11,8 +11,8 @@ const { productSearchTerm, xmlDoc, activeSource } = storeToRefs(rewardStore);
 const results = computed(() => {
   const activeDoc = xmlDoc.value[activeSource.value];
   if (!activeDoc || !productSearchTerm.value) return [];
-  const results = searchReward(activeDoc, productSearchTerm.value);
-  return results;
+  const rewardResults = searchReward(activeDoc, productSearchTerm.value);
+  return rewardResults;
 });
 </script>
 

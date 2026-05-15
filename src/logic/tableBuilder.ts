@@ -6,9 +6,9 @@ export function buildTable(
 ): DataTable[] {
   const table: DataTable[] = [];
   for (let i = 0; i < data.IDs.length; i++) {
-    const rewardNr = i + 1 + '.';
+    const rewardNr = `${i + 1}.`;
     const itemId = data.IDs[i];
-    const chance = data.chances[i] + '%';
+    const chance = `${data.chances[i]}%`;
     const rewardType = data.rewards[i];
 
     const itemData = {
@@ -49,6 +49,7 @@ function calculateChances(EXMLSection: XMLDocument | Element, PercentageChances:
   const chances = PercentageChances.map(Number);
 
   for (const chance of chances) {
+    // oxlint-disable-next-line no-magic-numbers
     const calcChance = chance / (chances.reduce((a, b) => a + b, 0) / 100); // NoSonar this is calculating a percentage
     const decimals = 3;
     calculatedChances.push(calcChance.toFixed(decimals));

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useRewardStore } from '@/stores/reward';
-import { storeToRefs } from 'pinia';
 import TextLabel from '../TextLabel.vue';
+import { storeToRefs } from 'pinia';
+import { useRewardStore } from '@/stores/reward';
 
 const rewardStore = useRewardStore();
 const { activeSource } = storeToRefs(rewardStore);

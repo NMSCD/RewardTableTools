@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { getItemData } from '@/logic/api';
 import { onMounted, ref } from 'vue';
+import { getItemData } from '@/logic/api';
 
 const props = defineProps<{
   content: string;

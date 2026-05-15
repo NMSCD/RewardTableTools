@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useRewardStore } from '@/stores/reward';
 import { ref } from 'vue';
+import { useRewardStore } from '@/stores/reward';
 
 defineProps<{
   inputId: string;

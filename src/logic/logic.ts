@@ -1,5 +1,5 @@
-import { type DataTable } from '@/types/table';
 import { buildTable, constructData } from './tableBuilder';
+import type { DataTable } from '@/types/table';
 
 export function processEXML(contents: string) {
   const parser = new DOMParser();
@@ -9,6 +9,9 @@ export function processEXML(contents: string) {
 
 /**
  * searches the EXML section for a given reward and returns its DOM element
+ * @param xmlDoc {XMLDocument | null}
+ * @param rewardId {string}
+ * @returns Element | undefined
  */
 export function searchRewardSection(xmlDoc: XMLDocument | null, rewardId: string): Element | undefined {
   const xmlSectionDom = xmlDoc?.querySelector(
@@ -27,12 +30,12 @@ export function rewardChances(EXMLSection: XMLDocument | Element, productSearchT
   ) {
     const rarityElements: HTMLCollection | undefined | null = EXMLSection?.querySelector('[name="Rarities"]')?.children;
     if (!rarityElements) return;
-    const rarities = Array.from(rarityElements);
+    const rarities = [...rarityElements];
 
     for (const rarity of rarities) {
       const sizeElements = rarity?.querySelector('[name="Sizes"]')?.children;
       if (!sizeElements) continue;
-      const sizes = Array.from(sizeElements);
+      const sizes = [...sizeElements];
       const rarityName = rarity.getAttribute('name');
       if (!rarityName) continue;
       const rarityHeader: DataTable = {
@@ -66,9 +69,11 @@ export function rewardChances(EXMLSection: XMLDocument | Element, productSearchT
 
 /**
  * Traverses the XML tree of one specific GcGenericRewardTableEntry and gets all the GcRewardTableItems and their data
+ * @param EXMLSection {Element | XMLDocument}
+ * @returns stuff
  */
 function getRewards(EXMLSection: Element | XMLDocument) {
-  const entries = Array.from(EXMLSection.querySelectorAll('[value="GcRewardTableItem.xml"]'));
+  const entries = [...EXMLSection.querySelectorAll('[value="GcRewardTableItem.xml"]')];
 
   const IDs: string[] = [];
   const chances: string[] = [];
@@ -111,10 +116,11 @@ function getRewards(EXMLSection: Element | XMLDocument) {
       case 'Items':
       case 'ProductIds':
       case 'ProductList':
-      case 'TechList':
+      case 'TechList': {
         const amount = entry?.querySelector(selector)?.childElementCount; // NoSonar this is fine
         output = `List (${amount} entries)`;
         break;
+      }
 
       case 'ProceduralProductCategory':
         output = `ProcProd: ${getValue(entry, selector)}`;
@@ -136,10 +142,11 @@ function getRewards(EXMLSection: Element | XMLDocument) {
         output = entry?.querySelectorAll(selector)[1]?.getAttribute('value');
         break;
 
-      case 'Stat':
+      case 'Stat': {
         const modify = entry?.querySelectorAll('[name="ModifyType"]')[1]?.getAttribute('value'); // NoSonar this is fine
         output = `${modify} stat: ${getValue(entry, selector)}`;
         break;
+      }
 
       case 'Reward':
         output = getValue(entry, selector);

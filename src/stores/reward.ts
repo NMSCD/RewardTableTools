@@ -1,5 +1,5 @@
-import { processEXML } from '@/logic/logic';
 import { defineStore } from 'pinia';
+import { processEXML } from '@/logic/logic';
 
 interface RewardState {
   productSearchTerm: string;
@@ -33,14 +33,10 @@ export const useRewardStore = defineStore('reward', {
       this.activeSource = 'file';
     },
 
-    readFile(file: File) {
-      const reader = new FileReader();
-      reader.readAsText(file);
-      reader.onload = (e) => {
-        this.setFile();
-        const contents = e.target?.result;
-        this.textToDoc(typeof contents === 'string' ? contents : '');
-      };
+    async readFile(file: File) {
+      const contents = await file.text();
+      this.setFile();
+      this.textToDoc(typeof contents === 'string' ? contents : '');
     },
 
     textToDoc(text: string) {

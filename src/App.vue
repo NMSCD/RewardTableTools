@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import InputSection from '@/components/inputs/InputSection.vue';
 import Navbar from '@/components/Navbar.vue';
+import OutputSection from '@/components/output/OutputSection.vue';
 import PageHeader from '@/components/PageHeader.vue';
 import SectionHeader from '@/components/SectionHeader.vue';
-import InputSection from '@/components/inputs/InputSection.vue';
-import OutputSection from '@/components/output/OutputSection.vue';
 import { onMounted } from 'vue';
 import { validIds } from './logic/api';
 

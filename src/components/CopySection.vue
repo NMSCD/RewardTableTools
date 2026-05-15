@@ -12,9 +12,10 @@ function copySection() {
   navigator.clipboard.writeText(props.data);
 
   isCopied.value = true;
+  const waitTime = 1500; // 1.5 seconds
   setTimeout(() => {
     isCopied.value = false;
-  }, 1500); // NoSonar wait 1.5 seconds
+  }, waitTime);
 }
 
 const icon = computed(() => (isCopied.value ? 'done' : 'content_copy'));
@@ -34,7 +35,9 @@ const icon = computed(() => (isCopied.value ? 'done' : 'content_copy'));
   cursor: pointer;
   border-radius: 100%;
   padding: 0.5rem;
-  transition: background-color 0.3s, color 0.3s;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
   user-select: none;
 
   &:hover {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import HelpDialogue from './dialog/HelpDialogue.vue';
+import { ref } from 'vue';
 import { useRewardStore } from '@/stores/reward';
 
 const rewardStore = useRewardStore();

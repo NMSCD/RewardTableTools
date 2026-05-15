@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import FileInput from './FileInput.vue';
 import TextLabel from '@/components/TextLabel.vue';
 import Tooltip from '@/components/Tooltip.vue';
-import FileInput from './FileInput.vue';
 </script>
 
 <template>

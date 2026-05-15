@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import ExmlSnippet from './ExmlSnippet.vue';
 import ChancesTable from './ChancesTable.vue';
+import ExmlSnippet from './ExmlSnippet.vue';
 import RewardList from './RewardList.vue';
-import { useRewardStore } from '@/stores/reward';
 import { storeToRefs } from 'pinia';
+import { useRewardStore } from '@/stores/reward';
 
 const rewardStore = useRewardStore();
 const { activeSource, productSearchTerm } = storeToRefs(rewardStore);

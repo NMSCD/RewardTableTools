@@ -1,8 +1,11 @@
 /**
  * returns list of rewards that reward a specific product
+ * @param xmlDoc {XMLDocument}
+ * @param ID {string}
+ * @returns stuff
  */
 export function searchReward(xmlDoc: XMLDocument, ID: string) {
-  const elements: Element[] = Array.from(xmlDoc.querySelectorAll(`*:not([name="InventoryClass"])[value="${ID}" i]`));
+  const elements: Element[] = [...xmlDoc.querySelectorAll(`*:not([name="InventoryClass"])[value="${ID}" i]`)];
 
   if (!elements.length) return;
 
@@ -15,7 +18,7 @@ export function searchReward(xmlDoc: XMLDocument, ID: string) {
     if (reward) results.add(reward);
   }
 
-  const resultArray: { [key: string]: string }[] = [];
+  const resultArray: Record<string, string>[] = [];
 
   for (const reward of results) {
     const result = reward.getAttribute('value');

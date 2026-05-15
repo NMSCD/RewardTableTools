@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import TextLabel from '@/components/TextLabel.vue';
 import { rewardChances, searchRewardSection } from '@/logic/logic';
-import { useRewardStore } from '@/stores/reward';
-import { storeToRefs } from 'pinia';
 import TableCell from './TableCell.vue';
+import TextLabel from '@/components/TextLabel.vue';
+import { computed } from 'vue';
+import { storeToRefs } from 'pinia';
+import { useRewardStore } from '@/stores/reward';
 
 const rewardStore = useRewardStore();
 const { activeSource, productSearchTerm, rewardSearchTerm, xmlDoc } = storeToRefs(rewardStore);

@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import FileUpload from './FileUpload.vue';
-import TextareaInput from './TextareaInput.vue';
-import TextInput from './TextInput.vue';
-import { useRewardStore } from '@/stores/reward';
-import { storeToRefs } from 'pinia';
-import { rewardChances } from '@/logic/logic';
-import { watchEffect } from 'vue';
 import SourceSelector from './SourceSelector.vue';
+import TextInput from './TextInput.vue';
+import TextareaInput from './TextareaInput.vue';
+import { rewardChances } from '@/logic/logic';
+import { storeToRefs } from 'pinia';
+import { useRewardStore } from '@/stores/reward';
+import { watchEffect } from 'vue';
 
 const rewardStore = useRewardStore();
 const { productSearchTerm, rewardSearchTerm, exmlSnippet, xmlDoc, activeSource } = storeToRefs(rewardStore);
