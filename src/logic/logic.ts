@@ -28,12 +28,12 @@ export function rewardChances(EXMLSection: XMLDocument | Element, productSearchT
     EXMLSection.parentNode?.querySelector('[value="GcRewardTableEntry.xml"]') ||
     EXMLSection.querySelector('[value="GcRewardTableEntry.xml"]')
   ) {
-    const rarityElements: HTMLCollection | undefined | null = EXMLSection?.querySelector('[name="Rarities"]')?.children;
+    const rarityElements = EXMLSection.querySelector('[name="Rarities"]')?.children;
     if (!rarityElements) return;
     const rarities = [...rarityElements];
 
     for (const rarity of rarities) {
-      const sizeElements = rarity?.querySelector('[name="Sizes"]')?.children;
+      const sizeElements = rarity.querySelector('[name="Sizes"]')?.children;
       if (!sizeElements) continue;
       const sizes = [...sizeElements];
       const rarityName = rarity.getAttribute('name');
@@ -99,13 +99,15 @@ function getRewards(EXMLSection: Element | XMLDocument) {
   for (const entry of entries) {
     let type, output;
     for (const selector of selectors) {
-      if (!entry?.querySelector(`[name="${selector}"]`)) continue;
+      if (!entry.querySelector(`[name="${selector}"]`)) continue;
       type = selector;
       break;
     }
 
     const selector = `[name="${type}"]`;
 
+    // there's a fucking default statement what do you mean not exhaustive
+    // oxlint-disable-next-line typescript/switch-exhaustiveness-check
     switch (type) {
       case 'ID':
       case 'TechId':
@@ -117,7 +119,7 @@ function getRewards(EXMLSection: Element | XMLDocument) {
       case 'ProductIds':
       case 'ProductList':
       case 'TechList': {
-        const amount = entry?.querySelector(selector)?.childElementCount; // NoSonar this is fine
+        const amount = entry.querySelector(selector)?.childElementCount; // NoSonar this is fine
         output = `List (${amount} entries)`;
         break;
       }
@@ -139,11 +141,11 @@ function getRewards(EXMLSection: Element | XMLDocument) {
         break;
 
       case 'Currency':
-        output = entry?.querySelectorAll(selector)[1]?.getAttribute('value');
+        output = entry.querySelectorAll(selector)[1]?.getAttribute('value');
         break;
 
       case 'Stat': {
-        const modify = entry?.querySelectorAll('[name="ModifyType"]')[1]?.getAttribute('value'); // NoSonar this is fine
+        const modify = entry.querySelectorAll('[name="ModifyType"]')[1]?.getAttribute('value'); // NoSonar this is fine
         output = `${modify} stat: ${getValue(entry, selector)}`;
         break;
       }
@@ -170,5 +172,5 @@ function getRewards(EXMLSection: Element | XMLDocument) {
 }
 
 function getValue(entry: Element, selector: string) {
-  return entry?.querySelector(selector)?.getAttribute('value');
+  return entry.querySelector(selector)?.getAttribute('value');
 }
