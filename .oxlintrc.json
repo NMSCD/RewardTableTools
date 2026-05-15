@@ -2,6 +2,11 @@
   "$schema": "./node_modules/oxlint/configuration_schema.json",
   "plugins": ["unicorn", "typescript", "oxc", "vue", "import", "eslint", "vitest", "promise", "jsdoc"],
   "categories": {},
+  "options": {
+    "reportUnusedDisableDirectives": "warn",
+    "typeAware": true
+    // "typeCheck": true, // still has some issues with Vue (module not found: App.vue)
+  },
   "rules": {
     // eslint
     "curly": ["warn", "multi-line", "consistent"],
@@ -206,6 +211,10 @@
     "vitest/warn-todo": "warn",
     "vitest/prefer-import-in-mock": "warn",
     "vitest/prefer-expect-type-of": "warn",
+    "vitest/require-awaited-expect-poll": "warn",
+    "vitest/require-mock-type-parameters": "warn",
+    "vitest/prefer-called-exactly-once-with": "warn",
+    "vitest/require-test-timeout": "off",
 
     // jest
     "jest/valid-title": ["warn", { "ignoreTypeOfDescribeName": true }],
@@ -362,7 +371,7 @@
     "typescript/prefer-readonly": "warn",
     "typescript/no-unnecessary-qualifier": "warn",
     "typescript/prefer-find": "warn",
-    "typescript/prefer-readonly-parameter-types": "warn",
+    "typescript/prefer-readonly-parameter-types": ["warn", { "ignoreInferredTypes": true }],
     "typescript/strict-void-return": "warn",
     "typescript/consistent-type-exports": "warn",
     "typescript/unified-signatures": "warn",
