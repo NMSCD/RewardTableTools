@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import TextLabel from '@/components/TextLabel.vue';
 
-const model = defineModel({ type: String, required: true });
+const model = defineModel<string>({ required: true });
 </script>
 
 <template>

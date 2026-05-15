@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { watch, watchEffect } from 'vue';
 import FileUpload from './FileUpload.vue';
 import SourceSelector from './SourceSelector.vue';
 import TextInput from './TextInput.vue';
@@ -6,7 +7,6 @@ import TextareaInput from './TextareaInput.vue';
 import { rewardChances } from '@/logic/logic';
 import { storeToRefs } from 'pinia';
 import { useRewardStore } from '@/stores/reward';
-import { watchEffect } from 'vue';
 
 const rewardStore = useRewardStore();
 const { productSearchTerm, rewardSearchTerm, exmlSnippet, xmlDoc, activeSource } = storeToRefs(rewardStore);
@@ -25,6 +25,8 @@ watchEffect(() => {
   rewardChances(currentlyActiveDoc, productSearchTerm.value);
 });
 
+watch(exmlSnippet, processSnippet);
+
 function processSnippet() {
   if (exmlSnippet.value) {
     rewardStore.setExml();
@@ -39,7 +41,7 @@ function processSnippet() {
 <template>
   <div class="columns is-flex-wrap-wrap mb-5">
     <div class="column is-full-mobile is-one-third-tablet is-one-quarter-desktop">
-      <FileUpload @input="rewardStore.setFile" />
+      <FileUpload />
     </div>
     <div class="column is-full-mobile is-two-thirds-tablet is-one-third-desktop">
       <TextInput
@@ -55,10 +57,7 @@ function processSnippet() {
     </div>
 
     <div class="column is-full-mobile">
-      <TextareaInput
-        v-model="exmlSnippet"
-        @input="processSnippet"
-      />
+      <TextareaInput v-model="exmlSnippet" />
     </div>
     <SourceSelector v-if="xmlDoc.exml && xmlDoc.file" />
   </div>

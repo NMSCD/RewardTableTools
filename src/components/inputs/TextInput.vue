@@ -5,7 +5,7 @@ defineProps<{
   inputId: string;
 }>();
 
-const model = defineModel({ type: String, required: true });
+const model = defineModel<string>({ required: true });
 </script>
 
 <template>

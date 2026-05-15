@@ -10,10 +10,7 @@ import Tooltip from '@/components/Tooltip.vue';
       <TextLabel inputId="fileUpload">Upload REWARDTABLE.EXML</TextLabel>
       <Tooltip>Can be found in METADATA/REALITY/TABLES.</Tooltip>
     </div>
-    <FileInput
-      input-id="fileUpload"
-      type="file"
-    />
+    <FileInput input-id="fileUpload" />
   </div>
 </template>
 
