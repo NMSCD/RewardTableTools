@@ -1,0 +1,19 @@
+name: Lint
+run-name: Lint
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v6
+
+      - name: Lint
+        run: |
+          npm ci
+          npm run lint:ci
