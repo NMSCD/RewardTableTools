@@ -10,7 +10,7 @@ const rewardStore = useRewardStore();
 const { activeSource, productSearchTerm, rewardSearchTerm, xmlDoc } = storeToRefs(rewardStore);
 
 const chancesInputType = computed(() =>
-  activeSource.value === 'exml' ? 'Chances from EXML Snippet' : 'Reward ID Chances'
+  activeSource.value === 'exml' ? 'Chances from EXML Snippet' : 'Reward ID Chances',
 );
 
 const divTable = computed(() => {

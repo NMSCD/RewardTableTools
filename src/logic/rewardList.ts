@@ -6,10 +6,12 @@ export function searchReward(xmlDoc: XMLDocument, ID: string) {
 
   if (!elements.length) return;
 
-  const results = new Set<Element>();		// can't have duplicate values
+  const results = new Set<Element>(); // can't have duplicate values
 
   for (const element of elements) {
-    const reward = element.closest('[value="GcGenericRewardTableEntry.xml"], [value="GcRewardTableEntry.xml"]')?.querySelector('[name="Id"]');
+    const reward = element
+      .closest('[value="GcGenericRewardTableEntry.xml"], [value="GcRewardTableEntry.xml"]')
+      ?.querySelector('[name="Id"]');
     if (reward) results.add(reward);
   }
 
@@ -19,8 +21,8 @@ export function searchReward(xmlDoc: XMLDocument, ID: string) {
     const result = reward.getAttribute('value');
     if (!result) continue;
     const returnObj = {
-      value: result
-    }
+      value: result,
+    };
     resultArray.push(returnObj);
   }
   return resultArray;

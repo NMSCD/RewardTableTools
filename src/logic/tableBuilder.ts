@@ -2,7 +2,7 @@ import type { DataTable } from '@/types/table';
 
 export function buildTable(
   data: { IDs: string[]; chances: string[]; rewards: string[] },
-  productSearchTerm: string
+  productSearchTerm: string,
 ): DataTable[] {
   const table: DataTable[] = [];
   for (let i = 0; i < data.IDs.length; i++) {

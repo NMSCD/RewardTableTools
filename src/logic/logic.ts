@@ -12,7 +12,7 @@ export function processEXML(contents: string) {
  */
 export function searchRewardSection(xmlDoc: XMLDocument | null, rewardId: string): Element | undefined {
   const xmlSectionDom = xmlDoc?.querySelector(
-    `[value="GcGenericRewardTableEntry.xml"] > [name="Id"][value=${rewardId} i], [value="GcRewardTableEntry.xml"] > [name="Id"][value=${rewardId} i]`
+    `[value="GcGenericRewardTableEntry.xml"] > [name="Id"][value=${rewardId} i], [value="GcRewardTableEntry.xml"] > [name="Id"][value=${rewardId} i]`,
   )?.parentNode;
   if (!(xmlSectionDom instanceof Element)) return;
   return xmlSectionDom;

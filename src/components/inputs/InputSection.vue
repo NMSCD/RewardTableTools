@@ -13,7 +13,7 @@ const { productSearchTerm, rewardSearchTerm, exmlSnippet, xmlDoc, activeSource }
 
 watchEffect(() => {
   const rewardTableEntries = xmlDoc.value[activeSource.value]?.querySelectorAll(
-    '[value="GcGenericRewardTableEntry.xml"] > [name="Id"]'
+    '[value="GcGenericRewardTableEntry.xml"] > [name="Id"]',
   );
 
   if (rewardTableEntries?.length === 1) rewardSearchTerm.value = rewardTableEntries[0].getAttribute('value') ?? '';
