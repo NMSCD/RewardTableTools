@@ -20,7 +20,7 @@
   "devDependencies": {
     "@types/node": "^25.6.2",
     "@vitejs/plugin-vue": "^6.0.6",
-    "oxfmt": "^0.48.0",
+    "oxfmt": "^0.50.0",
     "oxlint": "^1.63.0",
     "oxlint-tsgolint": "^0.22.1",
     "sass-embedded": "^1.99.0",
