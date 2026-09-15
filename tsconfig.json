@@ -109,5 +109,6 @@
   },
   "vueCompilerOptions": {
     "strictTemplates": true
-  }
+  },
+  "include": ["./**/*.vue", "./**/*.ts"]
 }
