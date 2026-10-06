@@ -18,7 +18,7 @@
     "vue": "^3.5.43"
   },
   "devDependencies": {
-    "@types/node": "^26.5.1",
+    "@types/node": "^26.6.3",
     "@vitejs/plugin-vue": "^6.0.9",
     "oxfmt": "^0.70.0",
     "oxlint": "^1.82.0",
