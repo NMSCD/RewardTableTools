@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@types/node": "^26.6.5",
-    "@vitejs/plugin-vue": "^6.0.9",
+    "@vitejs/plugin-vue": "^6.0.10",
     "oxfmt": "^0.72.0",
     "oxlint": "^1.88.0",
     "oxlint-tsgolint": "^7.0.2003",
